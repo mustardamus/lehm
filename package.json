@@ -1,0 +1,27 @@
+{
+  "name": "lehm",
+  "version": "0.1.0",
+  "description": "Create a thing or two",
+  "author": "Sebastian Senf <contact@mustardamus.com>",
+  "license": "MIT",
+  "keywords": [
+    "scaffold"
+  ],
+  "bin": "bin/lehm.js",
+  "scripts": {
+    "lint": "standard",
+    "test": "mocha test/**/*_spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mustardamus/lehm.git"
+  },
+  "dependencies": {
+    "hogan.js": "^3.0.2",
+    "yaml-front-matter": "^3.4.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.5.3",
+    "standard": "^7.1.2"
+  }
+}
