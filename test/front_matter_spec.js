@@ -25,5 +25,6 @@ describe('Front Matter Class', () => {
     let json = require(jsonPath)
 
     assert.deepEqual(obj, json)
+
   })
 })

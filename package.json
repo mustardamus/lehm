@@ -19,6 +19,8 @@
   "dependencies": {
     "fs-extra": "^0.30.0",
     "hogan.js": "^3.0.2",
+    "lodash": "^4.13.1",
+    "traverse": "^0.6.6",
     "yaml-front-matter": "^3.4.0"
   },
   "devDependencies": {
