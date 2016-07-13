@@ -17,6 +17,7 @@
     "url": "https://github.com/mustardamus/lehm.git"
   },
   "dependencies": {
+    "fs-extra": "^0.30.0",
     "hogan.js": "^3.0.2",
     "yaml-front-matter": "^3.4.0"
   },

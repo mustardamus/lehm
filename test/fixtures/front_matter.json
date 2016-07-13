@@ -1,0 +1,20 @@
+{
+  "boolean": true,
+  "number": 13,
+  "string": "just a string",
+  "array_strings": [
+    "a array",
+    "of strings"
+  ],
+  "array_objects": [
+    {
+      "id": 1,
+      "name": "object in array 1"
+    },
+    {
+      "id": 2,
+      "name": "object in array 2"
+    }
+  ],
+  "multi_line_string": "for descriptions and such"
+}
