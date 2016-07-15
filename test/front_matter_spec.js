@@ -11,6 +11,10 @@ const fixturePath = path.join(__dirname, 'fixtures/project/front_matter.txt')
 const jsonPath = path.join(__dirname, 'fixtures/compare/front_matter.json')
 
 describe('Front Matter Class', () => {
+  it('should return false if there is no front-matter', () => {
+    assert.equal(frontMatter.extractFromString('no matter'), false)
+  })
+
   it('should extract the front matter from a string', () => {
     let matter = '---\nboolean: true\n---'
     let obj = frontMatter.extractFromString(matter)
