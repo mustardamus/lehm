@@ -3,7 +3,8 @@
 Handlebars comments without any '=' or '#' inside will not be processed.
 So {{! this comment doesn't do anything }}.
 
-# Variable Comments
+
+# Variable Declaration Comments
 
 If a Handlebars comment has a '=' and/or '#' inside, it will be parsed as
 variable declaration that declares the name and the default value and/or
@@ -16,3 +17,18 @@ the description for the variable.
 {{! defaultValueWithDesc = true # this variable has a default value (a boolean) and a description }}
 
 {{! aNumber = 13 # this should be parsed as a number }}
+
+
+# Variable Usage
+
+Now you can use a declared variable from above like so:
+{{ defaultValueWithDesc }}.
+
+However, if a variable has not been declared you can do so just using it in your
+template like so: {{ justDeclared }}. The {{ justDeclared }} variable can then
+be re-used, however, it has no default value or description and will be
+requested from the user as a string.
+
+Further you can use helpers to modify the variable value like so:
+{{ lowerCase sampleString }} with a declared variable, or
+{{ snakeCase playSnake }} with a newly declared variable.

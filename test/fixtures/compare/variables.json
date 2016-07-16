@@ -14,5 +14,13 @@
   "aNumber": {
     "value": 13,
     "description": "this should be parsed as a number"
+  },
+  "justDeclared": {
+    "value": null,
+    "description": null
+  },
+  "playSnake": {
+    "value": null,
+    "description": null
   }
 }
