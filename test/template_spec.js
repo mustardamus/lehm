@@ -7,13 +7,16 @@ const path = require('path')
 const fs = require('fs-extra')
 const Template = require('../lib/template')
 
-const fixturePath = path.join(__dirname, 'fixtures/templates/all.txt')
-
 const template = new Template()
 
 describe('Template Class', () => {
   it('should get all variable names', () => {
-    let str = fs.readFileSync(fixturePath, 'utf8')
-    let variables = template.getVariableNames(str)
+    let fixturePath = path.join(__dirname, 'fixtures/init-project/template.txt')
+    let jsonPath = path.join(__dirname, 'fixtures/compare/variables.json')
+    let content = fs.readFileSync(fixturePath, 'utf8')
+    let variables = template.parseVariables(content)
+    let json = require(jsonPath)
+
+    assert.deepEqual(variables, json)
   })
 })

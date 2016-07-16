@@ -5,7 +5,7 @@ const vorpal = require('vorpal')()
 
 vorpal
   .command('foo', 'Outputs "bar".')
-  .action(function(args, callback) {
+  .action(function (args, callback) {
     this.log('bar')
     callback()
   })
@@ -13,7 +13,7 @@ vorpal
 vorpal
   .command('eat [food]')
   .autocomplete(['corn', 'steak', 'pasta'])
-  .action(function(args, callback) {
+  .action(function (args, callback) {
     this.log(args)
     callback()
   })

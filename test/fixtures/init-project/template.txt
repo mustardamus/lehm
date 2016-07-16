@@ -1,9 +1,18 @@
-{{! this comment doesn't do anything }}
+# Comments
+
+Handlebars comments without any '=' or '#' inside will not be processed.
+So {{! this comment doesn't do anything }}.
+
+# Variable Comments
+
+If a Handlebars comment has a '=' and/or '#' inside, it will be parsed as
+variable declaration that declares the name and the default value and/or
+the description for the variable.
 
 {{! sampleString # This is a description for the sampleString variable, with no default value }}
 
 {{! defaultValue = Default value for the defaultValue variable (a string), no description }}
 
-{{! defaultWithDesc = true # this variable has a default value (a boolean) and a description }}
+{{! defaultValueWithDesc = true # this variable has a default value (a boolean) and a description }}
 
 {{! aNumber = 13 # this should be parsed as a number }}
