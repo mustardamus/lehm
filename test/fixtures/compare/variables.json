@@ -42,5 +42,17 @@
   "declaredInBlock": {
     "value": null,
     "description": null
+  },
+  "blockInBlock": {
+    "value": true,
+    "description": null
+  },
+  "blockInBlockInBlock": {
+    "value": true,
+    "description": null
+  },
+  "declaredInBlockBlock": {
+    "value": null,
+    "description": null
   }
 }

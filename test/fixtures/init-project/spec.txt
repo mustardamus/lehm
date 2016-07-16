@@ -60,3 +60,11 @@ a boolean in the variable. For example:
 {{else}}
   Visible if {{unlessElseBoolean}} is true.
 {{/unless}}
+
+{{#if blockInBlock}}
+  You can have if-blocks in if-blocks.
+
+  {{#if blockInBlockInBlock}}
+    And declare new variables: {{declaredInBlockBlock}}
+  {{/if}}
+{{/if}}
