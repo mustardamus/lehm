@@ -1,7 +1,23 @@
 #!/usr/bin/env node
 'use strict'
 
-const FrontMatter = require('../lib/front_matter.js')
-const frontMatter = new FrontMatter()
+const vorpal = require('vorpal')()
 
-console.log(frontMatter.works())
+vorpal
+  .command('foo', 'Outputs "bar".')
+  .action(function(args, callback) {
+    this.log('bar')
+    callback()
+  })
+
+vorpal
+  .command('eat [food]')
+  .autocomplete(['corn', 'steak', 'pasta'])
+  .action(function(args, callback) {
+    this.log(args)
+    callback()
+  })
+
+vorpal
+  .delimiter('lehm$')
+  .show()

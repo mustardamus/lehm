@@ -1,0 +1,9 @@
+{{! this comment doesn't do anything }}
+
+{{! sampleString # This is a description for the sampleString variable, with no default value }}
+
+{{! defaultValue = Default value for the defaultValue variable (a string), no description }}
+
+{{! defaultWithDesc = true # this variable has a default value (a boolean) and a description }}
+
+{{! aNumber = 13 # this should be parsed as a number }}

@@ -18,10 +18,9 @@
   },
   "dependencies": {
     "fs-extra": "^0.30.0",
-    "hogan.js": "^3.0.2",
+    "handlebars": "^4.0.5",
     "lodash": "^4.13.1",
-    "traverse": "^0.6.6",
-    "yaml-front-matter": "^3.4.0"
+    "vorpal": "^1.11.2"
   },
   "devDependencies": {
     "mocha": "^2.5.3",

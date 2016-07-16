@@ -1,4 +1,0 @@
-This is a template without any yaml-front-matter. Template tags will be parsed
-and the user is asked to enter the values. It can be a {{string}} or a
-{{#boolean}}boolean{{/boolean}}. Then, after the file is parsed, it is written
-under the same name in the project folder.
