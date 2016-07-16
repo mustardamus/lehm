@@ -22,5 +22,25 @@
   "playSnake": {
     "value": null,
     "description": null
+  },
+  "ifOnlyBoolean": {
+    "value": true,
+    "description": null
+  },
+  "ifElseBoolean": {
+    "value": true,
+    "description": null
+  },
+  "unlessOnlyBoolean": {
+    "value": false,
+    "description": null
+  },
+  "unlessElseBoolean": {
+    "value": false,
+    "description": null
+  },
+  "declaredInBlock": {
+    "value": null,
+    "description": null
   }
 }

@@ -32,3 +32,31 @@ requested from the user as a string.
 Further you can use helpers to modify the variable value like so:
 {{ lowerCase sampleString }} with a declared variable, or
 {{ snakeCase playSnake }} with a newly declared variable.
+
+
+# If Statements
+
+If/Else/Unless Handlebar tags will result in a yes/no question for the user and
+a boolean in the variable. For example:
+
+{{#if ifOnlyBoolean}}
+  This is visible if {{ifOnlyBoolean}} is true. Default value is true.
+  You can use other declared variables like {{playSnake}} in blocks, or just
+  declare new ones like {{declaredInBlock}}.
+{{/if}}
+
+{{#if ifElseBoolean}}
+  Visible if {{ifElseBoolean}} is true. Default value is true.
+{{else}}
+  Visible if {{ifElseBoolean}} is false.
+{{/if}}
+
+{{#unless unlessOnlyBoolean}}
+  This is visible if {{unlessOnlyBoolean}} is false. Default value is false.
+{{/unless}}
+
+{{#unless unlessElseBoolean}}
+  Visible if {{unlessElseBoolean}} is false. Default value is false.
+{{else}}
+  Visible if {{unlessElseBoolean}} is true.
+{{/unless}}
