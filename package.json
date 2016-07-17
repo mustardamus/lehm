@@ -17,12 +17,12 @@
     "url": "https://github.com/mustardamus/lehm.git"
   },
   "dependencies": {
+    "commander": "^2.9.0",
     "fs-extra": "^0.30.0",
     "glob": "^7.0.5",
     "handlebars": "^4.0.5",
     "inquirer": "^1.1.2",
-    "lodash": "^4.13.1",
-    "vorpal": "^1.11.2"
+    "lodash": "^4.13.1"
   },
   "devDependencies": {
     "mocha": "^2.5.3",
