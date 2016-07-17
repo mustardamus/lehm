@@ -19,6 +19,7 @@
   "dependencies": {
     "fs-extra": "^0.30.0",
     "handlebars": "^4.0.5",
+    "inquirer": "^1.1.2",
     "lodash": "^4.13.1",
     "vorpal": "^1.11.2"
   },

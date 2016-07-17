@@ -2,20 +2,21 @@
 'use strict'
 
 const vorpal = require('vorpal')()
+const inquirer = require('inquirer')
+const Prompt = require('../lib/prompt')
+
+const prompt = new Prompt()
 
 vorpal
-  .command('foo', 'Outputs "bar".')
-  .action(function (args, callback) {
-    this.log('bar')
-    callback()
-  })
+  .command('checker', 'Tests by monkeys')
+  .action(function (args, cb) {
+    let variables = require('../test/fixtures/compare/variables.json')
+    let questions = prompt.questionsFromVariables(variables)
 
-vorpal
-  .command('eat [food]')
-  .autocomplete(['corn', 'steak', 'pasta'])
-  .action(function (args, callback) {
-    this.log(args)
-    callback()
+    inquirer.prompt(questions).then((answers) => {
+      console.log(answers)
+      cb()
+    })
   })
 
 vorpal
