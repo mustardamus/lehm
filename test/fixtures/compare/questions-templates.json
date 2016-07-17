@@ -1,0 +1,11 @@
+[
+  {
+    "type": "list",
+    "name": "template",
+    "choices": [
+      "compare",
+      "init-project - A description what will be generated, requirements, etc"
+    ],
+    "filter": "callback"
+  }
+]

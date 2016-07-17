@@ -9,7 +9,7 @@ const Parser = require('../lib/parser')
 
 const parser = new Parser()
 
-describe('Template Class', () => {
+describe('Parser Class', () => {
   it('should get all variable names', () => {
     let fixturePath = path.join(__dirname, 'fixtures/init-project/spec.txt')
     let jsonPath = path.join(__dirname, 'fixtures/compare/variables.json')
