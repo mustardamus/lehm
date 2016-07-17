@@ -2,6 +2,7 @@
   {
     "type": "list",
     "name": "template",
+    "message": "Choose Template",
     "choices": [
       "compare",
       "init-project - A description what will be generated, requirements, etc"
