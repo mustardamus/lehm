@@ -1,3 +1,7 @@
 {
-  "templatesPath": "~/templates"
+  "templatesPath": "~/templates",
+  "handlebarsDelimiters": [
+    "{{",
+    "}}"
+  ]
 }

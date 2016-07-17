@@ -22,6 +22,7 @@
     "fs-extra": "^0.30.0",
     "glob": "^7.0.5",
     "handlebars": "^4.0.5",
+    "handlebars-delimiters": "^0.1.2",
     "inquirer": "^1.1.2",
     "lodash": "^4.13.1"
   },
