@@ -16,10 +16,19 @@ describe('Config Class', () => {
   })
 
   it('should return the configs from the config file', () => {
-    let cfg = config.read()
-    let fixture = require(fixturePath)
+    assert.deepEqual(config.read(), require(fixturePath))
+  })
 
-    assert.equal(cfg.templatesPath, fixture.templatesPath)
-    assert.deepEqual(cfg.handlebarsDelimiters, fixture.handlebarsDelimiters)
+  it('should save new configs to the config file', () => {
+    let oldCfg = config.read()
+    let newCfg = {
+      templatesPath: 'works',
+      handlebarsDelimiters: 'good'
+    }
+
+    config.save(newCfg)
+    assert.deepEqual(config.read(), require(fixturePath))
+    fs.writeFileSync(config.configPath, JSON.stringify(oldCfg, null, 2))
+    assert.deepEqual(oldCfg, require(fixturePath))
   })
 })

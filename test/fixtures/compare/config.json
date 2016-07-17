@@ -1,7 +1,4 @@
 {
   "templatesPath": "/templates",
-  "handlebarsDelimiters": [
-    "{{",
-    "}}"
-  ]
+  "handlebarsDelimiters": "<% %>"
 }
