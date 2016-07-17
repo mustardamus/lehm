@@ -19,4 +19,17 @@ describe('Prompt Class', () => {
 
     assert.deepEqual(promptObj, json)
   })
+
+  it('should normalize boolean and number answer values', () => {
+    let answers = {
+      booleanTrue: 'true',
+      booleanFalse: 'false',
+      numberAsString: '13'
+    }
+    let normalized = prompt.normalizeAnswerValues(answers)
+
+    assert.equal(normalized.booleanTrue, true)
+    assert.equal(normalized.booleanFalse, false)
+    assert.equal(normalized.numberAsString, 13)
+  })
 })
