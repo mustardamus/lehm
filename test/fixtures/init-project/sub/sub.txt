@@ -1,0 +1,2 @@
+This is a template in a sub-folder. It also can declare new variables or use
+already declared variables like {{ sampleString }}.

@@ -1,0 +1,16 @@
+{
+  "compare": {
+    "files": [
+      "prompt.json",
+      "templates.json",
+      "variables.json"
+    ]
+  },
+  "init-project": {
+    "description": "A description what will be generated, requirements, etc",
+    "files": [
+      "spec.txt",
+      "sub/sub.txt"
+    ]
+  }
+}
