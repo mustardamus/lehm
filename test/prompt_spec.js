@@ -4,7 +4,6 @@
 
 const assert = require('assert')
 const path = require('path')
-const fs = require('fs-extra')
 const Prompt = require('../lib/prompt')
 
 const prompt = new Prompt()

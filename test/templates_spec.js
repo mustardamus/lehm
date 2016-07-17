@@ -4,7 +4,6 @@
 
 const assert = require('assert')
 const path = require('path')
-const fs = require('fs-extra')
 const Templates = require('../lib/templates')
 
 const templatesPath = path.join(__dirname, 'fixtures')
