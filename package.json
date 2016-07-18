@@ -10,7 +10,8 @@
   "bin": "bin/lehm.js",
   "scripts": {
     "lint": "standard",
-    "test": "mocha test/**/*_spec.js"
+    "test": "mocha test/**/*_spec.js",
+    "gh-pages": "gh-pages -d docs"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "rc": "^1.1.6"
   },
   "devDependencies": {
+    "gh-pages": "^0.11.0",
     "mocha": "^2.5.3",
     "standard": "^7.1.2"
   }
