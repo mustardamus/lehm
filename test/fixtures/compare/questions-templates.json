@@ -5,7 +5,7 @@
     "message": "Choose Template",
     "choices": [
       "compare",
-      "init-project - A description what will be generated, requirements, etc"
+      "Project Init (init-project) - A description what will be generated, requirements, etc"
     ],
     "filter": "callback"
   }

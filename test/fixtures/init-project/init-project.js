@@ -4,14 +4,18 @@
 'use strict'
 
 module.exports = {
+  // name will be showed in the 'lehm list' command, as well as in the list
+  // when the 'lehm create' command when no template-name is provided
+  // if no name is set, the parent folder name will be used as name
+  // the tempate-name passed in to the 'lehm create' command can be either the
+  // parent direcory name or this name field
+  name: 'Project Init',
+
+  // the description will be showed in the 'lehm list' command
   description: 'A description what will be generated, requirements, etc',
 
   // these folders/files will be ignored and not treated as templates
   ignore: ['ignore', 'ignore.txt'],
-
-  /* FUTURE STUFF
-  name: 'Name that is shown to the user instead of the parent folder name',
-  */
 
   before: function (srcPath, distPath, inquirer, shell, handlebars, cb) {
     // this function is called before the process starts
