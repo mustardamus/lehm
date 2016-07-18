@@ -7,28 +7,39 @@ const path = require('path')
 const fs = require('fs-extra')
 const Config = require('../lib/config')
 
-const fixturePath = path.join(__dirname, 'fixtures/compare/config.json')
-const config = new Config(fixturePath)
+const homePath = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
+const rcPath = path.join(homePath, '.lehmrc')
+const fixture = {
+  templatesPath: '/templates',
+  handlebarsDelimiters: '{{ }}'
+}
+const config = new Config(fixture)
 
 describe('Config Class', () => {
-  it('should set the config file path', () => {
-    assert.equal(config.configPath, fixturePath)
+  it('should set the passed in configs', () => {
+    assert.deepEqual(config.config, fixture)
   })
 
   it('should return the configs from the config file', () => {
-    assert.deepEqual(config.read(), require(fixturePath))
+    assert.deepEqual(config.read(), fixture)
   })
 
-  it('should save new configs to the config file', () => {
-    let oldCfg = config.read()
-    let newCfg = {
-      templatesPath: 'works',
-      handlebarsDelimiters: 'good'
+  it('should save new configs to a config file in the home path', () => {
+    let oldContent = null
+
+    if (fs.existsSync(rcPath)) {
+      oldContent = fs.readFileSync(rcPath, 'utf8')
+      fs.removeSync(rcPath)
     }
 
-    config.save(newCfg)
-    assert.deepEqual(config.read(), require(fixturePath))
-    fs.writeFileSync(config.configPath, JSON.stringify(oldCfg, null, 2))
-    assert.deepEqual(oldCfg, require(fixturePath))
+    config.save(fixture)
+    let content = fs.readFileSync(rcPath, 'utf8')
+
+    assert.equal(fs.existsSync(rcPath), true)
+    assert.equal(content, JSON.stringify(fixture, null, 2))
+
+    if (oldContent) {
+      fs.writeFileSync(rcPath, oldContent, 'utf8')
+    }
   })
 })

@@ -1,7 +1,6 @@
 {
   "compare": {
     "files": [
-      "config.json",
       "questions-templates.json",
       "questions-variables.json",
       "templates.json",
