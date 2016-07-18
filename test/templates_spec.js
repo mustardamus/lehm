@@ -6,6 +6,8 @@ const assert = require('assert')
 const path = require('path')
 const Templates = require('../lib/templates')
 
+const fixturePath = path.join(__dirname, 'fixtures/compare/templates.json')
+const fixture = require(fixturePath)
 const templatesPath = path.join(__dirname, 'fixtures')
 const templates = new Templates(templatesPath)
 
@@ -15,10 +17,12 @@ describe('Templates Class', () => {
   })
 
   it('should generate a object of all templates', () => {
-    let fixturePath = path.join(__dirname, 'fixtures/compare/templates.json')
-    let fixture = require(fixturePath)
-    let templatesObj = templates.getTemplates()
+    assert.deepEqual(templates.getTemplates(), fixture)
+  })
 
-    assert.deepEqual(templatesObj, fixture)
+  it('should find template by folder-name or meta-name', () => {
+    assert.equal(templates.findTemplateName('compare'), 'compare')
+    assert.equal(templates.findTemplateName('Project Init'), 'init-project')
+    assert.equal(templates.findTemplateName('not-there'), null)
   })
 })
