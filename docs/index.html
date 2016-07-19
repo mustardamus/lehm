@@ -64,6 +64,87 @@
           </div>
         </div>
       </div>
+
+      <div id="commands" class="content section">
+        <h3 class="title">Commands</h3>
+
+        <p>
+          Once you've installed Lehm with <code>npm install lehm -g</code>
+          you'll have access to the <code>lehm</code> executable. It only has
+          three commands. If you need a refresher on them, just run it without
+          any command, which will be the same as <code>lehm --help</code>.
+        </p>
+
+        <div class="columns">
+          <div class="column is-4">
+            <code><span>lehm</span> list</code>
+            <pre>$ lehm list
+Templates Path: ~/templates
+
+js-component
+js-component: component.js | template.html | style.css
+
+Node.js Module - Scaffold for a Node.js Module
+node-module: package.json | lib/index.js | test/test.js</pre>
+
+            <p>
+              List all templates and their metas and files that are found in the
+              configured templates path.
+              Also see
+              <a href="#metas">Template Metas</a>.
+            </p>
+          </div>
+          <div class="column is-4">
+            <code><span>lehm</span> create [name]</code>
+            <pre>$ lehm create
+? Choose Template (Use arrow keys)
+❯ js-component
+  Node.js Module (node-module) - Scaffold for a Node.js Module
+
+$ lehm create node-module
+? Name of your Node Module: Lehm
+? ...</pre>
+            <p>
+              Start creating files from a template. If you do not pass the
+              <code>[name]</code>, you will be presented with a list of all
+              templates to choose from.
+            </p>
+          </div>
+          <div class="column is-4">
+            <code><span>lehm</span> config</code>
+            <pre>$ lehm config
+? Templates Path /Users/mustardamus/Code/templates
+? Handlebars Delimiters ({{ }}) <% %>
+Saved.</pre>
+
+            <p>
+              Save the templates path and handlebars delimiters to
+              <code>~/.lehmrc</code>. Also see
+              <a href="#configuration">Configuration</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="templates" class="content section">
+        <h3 class="title">Template Tags</h3>
+      </div>
+
+      <div id="hooks" class="content section">
+        <h3 class="title">Template Hooks</h3>
+      </div>
+
+      <div id="metas" class="content section">
+        <h3 class="title">Template Metas</h3>
+      </div>
+
+      <div id="helpers" class="content section">
+        <h3 class="title">Handlebar Helpers</h3>
+      </div>
+
+      <div id="configuration" class="content section">
+        <h3 class="title">Configuration</h3>
+      </div>
     </div>
   </body>
 </html>

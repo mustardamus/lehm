@@ -7,6 +7,15 @@ html, body {
   background: #4F4E57;
 }
 
+p a {
+  color: #66AEF3;
+  border-bottom: 3px solid #F4E9DF;
+}
+
+p a:hover {
+  border-bottom: 3px solid #66AEF3;
+}
+
 .container {
   max-width: 960px !important;
   background: white;
@@ -36,7 +45,7 @@ header .logo {
   bottom: -8px;
   right: 0;
   background: #4F4E57;
-  padding: 20px 30px;
+  padding: 20px 0 20px 30px;
   color: #66AEF3;
   border-top-left-radius: 10px;
   cursor: default;
@@ -70,7 +79,7 @@ header a:hover {
 
 .column.is-3 .menu-wrapper .menu {
   background: #8F776A;
-  margin: 20px;
+  margin: 20px 20px 20px 0;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
@@ -105,10 +114,6 @@ header a:hover {
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
-#installation {
-  padding-bottom: 50px;
-}
-
 #intro {
   padding: 0 30px;
 }
@@ -129,4 +134,53 @@ header a:hover {
   border-radius: 5px;
   padding: 10px 0;
   margin: 30px;
+}
+
+.content {
+  margin-bottom: 0 !important;
+}
+
+.section {
+  border-top: 50px solid #4F4E57;
+  position: relative;
+  padding-top: 60px;
+}
+
+.section .title {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  background: #4F4E57;
+  color: #66AEF3;
+  font-size: 2.2em;
+  border-bottom: 5px solid #8F776A;
+  padding: 0 20px 15px 0;
+  cursor: default;
+  border-bottom-right-radius: 10px;
+}
+
+.section > p {
+  font-size: 1.2em;
+}
+
+#commands .column > code {
+  margin-top: 20px;
+  font-size: 1.7em;
+  text-align: center;
+  display: block;
+}
+
+#commands .column > code span {
+  color: #555;
+}
+
+#commands .column pre {
+  background: #8F776A;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.8em;
+  overflow: auto;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  min-height: 130px;
+  margin-bottom: 5px;
 }
