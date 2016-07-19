@@ -1,24 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Lehm - Documentation</title>
+    <title>Lehm - a file-generator that gets out of your way</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="...">
+    <meta name="description" content="Lehm - a file-generator that gets out of your way">
 
     <link rel="stylesheet" href="assets/bulma.min.css" media="screen" charset="utf-8">
-    <style media="screen">
-      .container {
-        max-width: 960px !important;
-        background: white;
-        margin: 50px auto;
-      }
-    </style>
+    <link rel="stylesheet" href="assets/style.css" media="screen" charset="utf-8">
   </head>
   <body>
     <div class="container">
-      <img src="assets/lehm.jpg">
+      <header>
+        <a href="https://github.com/mustardamus/lehm">
+          github.com/mustardamus/lehm
+        </a>
+
+        <div class="logo">
+          <h1 class="title">Lehm</h1>
+          <h2 class="subtitle">a file-generator that gets out of your way</h2>
+        </div>
+      </header>
+
+      <div id="installation" class="columns">
+        <div class="column is-3">
+          <div class="menu-wrapper">
+            <aside class="menu">
+              <ul class="menu-list">
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#commands">Commands</a></li>
+                <li><a href="#templates">Template Tags</a></li>
+                <li><a href="#hooks">Template Hooks</a></li>
+                <li><a href="#metas">Template Metas</a></li>
+                <li><a href="#helpers">Handlebar Helpers</a></li>
+                <li><a href="#configuration">Configuration</a></li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+        <div class="column">
+          <div id="npm-install">
+            npm install lehm -g
+          </div>
+
+          <div id="intro">
+            <p>
+              Lehm is a command-line file-generator that aims to get out of your
+              way. Write templates and generate files from them without
+              configuring a thing or writing any code.
+            </p>
+            <p>
+              It's build on <a href="http://handlebarsjs.com">Handlebars.js</a>
+              and has very simple hooks with access to
+              <a href="https://github.com/SBoudrias/Inquirer.js">Inquirer.js</a>
+              and <a href="https://github.com/shelljs/shelljs">Shell.js</a>,
+              which makes it very extendible.
+            </p>
+            <p>
+              Generate single files, a bunch of them or scaffold whole projects
+              with installation and all.
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
