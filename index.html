@@ -1,24 +1,221 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Lehm - Documentation</title>
+    <title>Lehm - a file-generator that gets out of your way</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="...">
+    <meta name="description" content="Lehm - a file-generator that gets out of your way">
 
     <link rel="stylesheet" href="assets/bulma.min.css" media="screen" charset="utf-8">
-    <style media="screen">
-      .container {
-        max-width: 960px !important;
-        background: white;
-        margin: 50px auto;
-      }
-    </style>
+    <link rel="stylesheet" href="assets/style.css" media="screen" charset="utf-8">
   </head>
   <body>
     <div class="container">
-      <img src="assets/lehm.jpg">
+      <header>
+        <a href="https://github.com/mustardamus/lehm">
+          github.com/mustardamus/lehm
+        </a>
+
+        <div class="logo">
+          <h1 class="title">Lehm</h1>
+          <h2 class="subtitle">a file-generator that gets out of your way</h2>
+        </div>
+      </header>
+
+      <div id="installation" class="columns">
+        <div class="column is-3">
+          <div class="menu-wrapper">
+            <aside class="menu">
+              <ul class="menu-list">
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#commands">Commands</a></li>
+                <li><a href="#templates">Template Tags</a></li>
+                <li><a href="#hooks">Template Hooks</a></li>
+                <li><a href="#metas">Template Metas</a></li>
+                <li><a href="#helpers">Handlebar Helpers</a></li>
+                <li><a href="#configuration">Configuration</a></li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+        <div class="column">
+          <div id="npm-install">
+            npm install lehm -g
+          </div>
+
+          <div id="intro">
+            <p>
+              Lehm is a command-line file-generator that aims to get out of your
+              way. Write templates and generate files from them without
+              configuring a thing or writing any code.
+            </p>
+            <p>
+              It's build on <a href="http://handlebarsjs.com">Handlebars.js</a>
+              and has very simple hooks with access to
+              <a href="https://github.com/SBoudrias/Inquirer.js">Inquirer.js</a>
+              and <a href="https://github.com/shelljs/shelljs">Shell.js</a>,
+              which makes it very extendible.
+            </p>
+            <p>
+              Generate single files, a bunch of them or scaffold whole projects
+              with installation and all.
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div id="commands" class="content section">
+        <h3 class="title">Commands</h3>
+
+        <p>
+          Once you've installed Lehm with <code>npm install lehm -g</code>
+          you'll have access to the <code>lehm</code> executable. It only has
+          three commands. If you need a refresher on them, just run it without
+          any command, which will be the same as <code>lehm --help</code>.
+        </p>
+
+        <div class="columns">
+          <div class="column is-4">
+            <code><span>lehm</span> list</code>
+            <pre><span>$</span> lehm list
+Templates Path: ~/templates
+
+js-component
+js-component: component.js | template.html | style.css
+
+Node.js Module - Scaffold for a Node.js Module
+node-module: package.json | lib/index.js | test/test.js</pre>
+
+            <p>
+              List all templates and their metas and files that are found in the
+              configured templates path.
+              Also see
+              <a href="#metas">Template Metas</a>.
+            </p>
+          </div>
+          <div class="column is-4">
+            <code><span>lehm</span> create [name]</code>
+            <pre><span>$</span> lehm create
+? Choose Template (Use arrow keys)
+❯ js-component
+  Node.js Module (node-module) - Scaffold for a Node.js Module
+
+$ lehm create node-module
+? Name of your Node Module: Lehm
+? ...</pre>
+            <p>
+              Start creating files from a template. If you do not pass the
+              <code>[name]</code>, you will be presented with a list of all
+              templates to choose from.
+            </p>
+          </div>
+          <div class="column is-4">
+            <code><span>lehm</span> config</code>
+            <pre><span>$</span> lehm config
+? Templates Path /Users/mustardamus/Code/templates
+? Handlebars Delimiters ({{ }}) <% %>
+Saved.</pre>
+
+            <p>
+              Save the templates path and handlebars delimiters to
+              <code>~/.lehmrc</code>. Also see
+              <a href="#configuration">Configuration</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="templates" class="content section">
+        <h3 class="title">Template Tags</h3>
+
+        <p>
+          Lehm uses <a href="http://handlebarsjs.com">Handlebars.js</a> to
+          parse and transform the templates. By default the delimiters are
+          <code>{{ }}</code>, but you can change them if they clash with the
+          content of your templates. See how in the
+          <a href="#configuration">Configuration</a> section.
+        </p>
+
+        <h4 class="title is-4">Create template directory</h4>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              Lets learn the Template Tags by creating our first template, lets
+              call it <code>js-component</code>.
+            </p>
+            <p>
+              We create it in the default
+              Templates Directory, which is in the Home folder of the current user,
+              under the sub-directory <code>~/templates</code>. Again, you can
+              <a href="#configuration">configure it</a> if you want it to be in
+              another path.
+            </p>
+            <p>
+              Lets use the <code>lehm list</code> command to check if the newly
+              created template was picked up.
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~ $</span> mkdir -p templates/js-component
+<span>~ $</span> cd templates/js-component
+<span>~/templates/js-component $</span> touch component.js
+<span>~/templates/js-component $</span> touch template.html
+<span>~/templates/js-component $</span> touch style.css
+<span>~/templates/js-component $</span> lehm list
+Templates Path: ~/templates
+
+js-component
+js-component: component.js | style.css | template.html</pre>
+          </div>
+        </div>
+
+        <h4 class="title is-4">Comments and Variable Declarations</h4>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              Lehm slightly extends Handlebars Comments. Comments are indicated
+              by an <code>!</code> inside the delimiters.
+            </p>
+            <p>
+              If the comment does not include a <code>=</code> and/or
+              <code>#</code> character, it will be a plain comment and not
+              parsed. In the generated file, the comment will be removed.
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~/templates/js-component $</span> cat component.js
+{{! this is a plain comment }}
+{{! componentName # Name of your component }}
+{{! namespace = components }}
+{{! initialComment = A JS Component # First line comment }}
+<span>~/templates/js-component $</span> cd
+<span>~ $</span> mkdir test-comp &amp;&amp; cd test-comp
+<span>~/test-comp $</span> lehm create js-component
+? Name of your component: test-comp
+? namespace (components): app
+? First line comment (A JS Component): neat :)</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="hooks" class="content section">
+        <h3 class="title">Template Hooks</h3>
+      </div>
+
+      <div id="metas" class="content section">
+        <h3 class="title">Template Metas</h3>
+      </div>
+
+      <div id="helpers" class="content section">
+        <h3 class="title">Handlebar Helpers</h3>
+      </div>
+
+      <div id="configuration" class="content section">
+        <h3 class="title">Configuration</h3>
+      </div>
     </div>
   </body>
 </html>

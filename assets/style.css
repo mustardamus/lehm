@@ -1,0 +1,207 @@
+/*
+  Clay Image: https://pixabay.com/static/uploads/photo/2013/01/13/14/28/clay-74792_960_720.jpg
+  Pallete: http://www.colourlovers.com/palette/586482/Kona_Coast
+*/
+
+html, body {
+  background: #4F4E57;
+}
+
+p a, p a:visited {
+  color: #66AEF3 !important;
+  border-bottom: 3px solid #F4E9DF !important;
+}
+
+p a:hover {
+  color: #333 !important;
+  border-bottom: 3px solid #66AEF3 !important;
+}
+
+pre {
+  background: #4F4E57;
+  color: rgba(255, 255, 255, 0.9);
+  overflow: auto;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  padding: 8px 12px;
+  line-height: 20px;
+}
+
+pre span {
+  color: #66AEF3;
+}
+
+.container {
+  max-width: 960px !important;
+  background: white;
+  margin: 50px auto;
+  border-radius: 3px;
+}
+
+header {
+  background: url("lehm.jpg") top left no-repeat;
+  min-height: 245px;
+  border-bottom: 8px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+header a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #4F4E57;
+  padding: 0 0 6px 10px;
+  color: #66AEF3;
+  border-bottom-left-radius: 10px;
+}
+
+header .logo {
+  position: absolute;
+  bottom: -8px;
+  right: 0;
+  background: #4F4E57;
+  padding: 20px 0 20px 30px;
+  color: #66AEF3;
+  border-top-left-radius: 10px;
+  cursor: default;
+}
+
+header .logo .title {
+  color: #66AEF3;
+}
+
+header .logo .subtitle {
+  color: #C7EDE8;
+}
+
+header a:hover {
+  color: #66AEF3;
+  text-decoration: underline;
+}
+
+.column.is-3 {
+  position: relative;
+}
+
+.column.is-3 .menu-wrapper {
+  position: absolute;
+  top: -84px;
+  background: #4F4E57;
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.column.is-3 .menu-wrapper .menu {
+  background: #8F776A;
+  margin: 20px 20px 20px 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  color: #F4E9DF;
+}
+
+.column.is-3 .menu-wrapper .menu li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.column.is-3 .menu-wrapper .menu li:last-child {
+  border-bottom: none;
+}
+
+.column.is-3 .menu-wrapper .menu li a {
+  color: #F4E9DF;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  transition: background 0.1s ease;
+}
+
+.column.is-3 .menu-wrapper .menu li:first-child a {
+  border-top-right-radius: 10px;
+}
+
+.column.is-3 .menu-wrapper .menu li:last-child a {
+  border-bottom-right-radius: 10px;
+}
+
+.column.is-3 .menu-wrapper .menu li a:hover {
+  color: white;
+  background: #66AEF3;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+#intro {
+  padding: 0 30px;
+}
+
+#intro p {
+  font-size: 1.4em;
+  line-height: 28px;
+  margin-bottom: 16px;
+}
+
+#npm-install {
+  font-size: 2.2em;
+  text-align: center;
+  color: #444;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+  background: #F4E9DF;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px 0;
+  margin: 30px;
+}
+
+.content {
+  margin-bottom: 0 !important;
+}
+
+.section {
+  border-top: 50px solid #4F4E57;
+  position: relative;
+  padding-top: 60px;
+}
+
+.section h3.title {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  background: #4F4E57;
+  color: #66AEF3;
+  font-size: 2.2em;
+  border-bottom: 5px solid #8F776A;
+  padding: 0 20px 15px 0;
+  cursor: default;
+  border-bottom-right-radius: 10px;
+}
+
+.section h4.title {
+
+  padding: 0;
+}
+
+.section p {
+  font-size: 1.2em;
+}
+
+.section p code {
+  font-size: 0.8em;
+}
+
+#commands .column > code {
+  margin-top: 20px;
+  font-size: 1.7em;
+  text-align: center;
+  display: block;
+}
+
+#commands .column > code span {
+  color: #555;
+}
+
+#commands .column pre {
+  font-size: 0.8em;
+  line-height: 18px;
+  padding: 5px 7px;
+  min-height: 180px;
+  margin-bottom: 10px;
+}
