@@ -7,13 +7,28 @@ html, body {
   background: #4F4E57;
 }
 
-p a {
-  color: #66AEF3;
-  border-bottom: 3px solid #F4E9DF;
+p a, p a:visited {
+  color: #66AEF3 !important;
+  border-bottom: 3px solid #F4E9DF !important;
 }
 
 p a:hover {
-  border-bottom: 3px solid #66AEF3;
+  color: #333 !important;
+  border-bottom: 3px solid #66AEF3 !important;
+}
+
+pre {
+  background: #4F4E57;
+  color: rgba(255, 255, 255, 0.9);
+  overflow: auto;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  padding: 8px 12px;
+  line-height: 20px;
+}
+
+pre span {
+  color: #66AEF3;
 }
 
 .container {
@@ -146,7 +161,7 @@ header a:hover {
   padding-top: 60px;
 }
 
-.section .title {
+.section h3.title {
   position: absolute;
   top: -18px;
   left: 0;
@@ -159,8 +174,17 @@ header a:hover {
   border-bottom-right-radius: 10px;
 }
 
-.section > p {
+.section h4.title {
+
+  padding: 0;
+}
+
+.section p {
   font-size: 1.2em;
+}
+
+.section p code {
+  font-size: 0.8em;
 }
 
 #commands .column > code {
@@ -175,12 +199,9 @@ header a:hover {
 }
 
 #commands .column pre {
-  background: #8F776A;
-  color: rgba(255, 255, 255, 0.9);
   font-size: 0.8em;
-  overflow: auto;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-  padding: 5px;
-  min-height: 130px;
-  margin-bottom: 5px;
+  line-height: 18px;
+  padding: 5px 7px;
+  min-height: 180px;
+  margin-bottom: 10px;
 }
