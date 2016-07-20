@@ -175,8 +175,11 @@ header a:hover {
 }
 
 .section h4.title {
-
   padding: 0;
+}
+
+.section h5.title code {
+  font-size: 1.1em;
 }
 
 .section p {

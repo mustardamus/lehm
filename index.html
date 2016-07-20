@@ -101,7 +101,7 @@ node-module: package.json | lib/index.js | test/test.js</pre>
 ❯ js-component
   Node.js Module (node-module) - Scaffold for a Node.js Module
 
-$ lehm create node-module
+<span>$</span> lehm create node-module
 ? Name of your Node Module: Lehm
 ? ...</pre>
             <p>
@@ -177,12 +177,27 @@ js-component: component.js | style.css | template.html</pre>
           <div class="column is-6">
             <p>
               Lehm slightly extends Handlebars Comments. Comments are indicated
-              by an <code>!</code> inside the delimiters.
+              by an <code>!</code> inside the delimiters. In generated files,
+              the comments will be removed.
             </p>
             <p>
               If the comment does not include a <code>=</code> and/or
               <code>#</code> character, it will be a plain comment and not
-              parsed. In the generated file, the comment will be removed.
+              parsed.
+            </p>
+
+            <h5 class="title">
+              <code>variableName = default value</code>
+            </h5>
+
+            <p>
+              You can assign a <code>default value</code> to a
+              <code>variableName</code> by using the <code>=</code> character.
+              When you create the template with <code>lehm create</code> you
+              will be offered a <code>default value</code>, you either can hit
+              enter to use it or overwrite it with another string. Note that the
+              <code>default value</code> is always a string, with no need for
+              <code>' '</code> or <code>" "</code>.
             </p>
           </div>
           <div class="column is-6">
@@ -191,12 +206,143 @@ js-component: component.js | style.css | template.html</pre>
 {{! componentName # Name of your component }}
 {{! namespace = components }}
 {{! initialComment = A JS Component # First line comment }}
+
 <span>~/templates/js-component $</span> cd
 <span>~ $</span> mkdir test-comp &amp;&amp; cd test-comp
 <span>~/test-comp $</span> lehm create js-component
 ? Name of your component: test-comp
 ? namespace (components): app
 ? First line comment (A JS Component): neat :)</pre>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-6">
+            <h5 class="title">
+              <code>variableName # useful description</code>
+            </h5>
+
+            <p>
+              You can assign a <code>useful description</code> to
+              <code>variableName</code> with the <code>#</code> character.
+              When you create your template, the description will be shown in
+              the prompts instead of the <code>variableName</code>.
+            </p>
+          </div>
+          <div class="column is-6">
+            <h5 class="title">
+              <code>variableName = default # description</code>
+            </h5>
+
+            <p>
+              A combination of both, <code>default value</code> and
+              <code>useful description</code>, assigned to the
+              <code>variableName</code>. The <code>description</code> must
+              always come last.
+            </p>
+          </div>
+        </div>
+
+        <h4 class="title is-4">Using, re-using and declaring Variables on the fly</h4>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              The <code>component.js</code> template from above won't have any
+              content, because we only have declared some variables but actually
+              never used them. Lets try that.
+            </p>
+            <p>
+              Variables are sitting between the delimiters, by default they are
+              <code>{{ }}</code>, but they can be set to custom delimeters
+              either using the <code>lehm config</code> command or by having a
+              <code>.lehmrc</code> somewhere. See the the
+              <a href="#configuration">Configuration section</a> for details.
+              Another way is to set per-template-delimiters with
+              <a href="#metas">Template Metas</a>.
+            </p>
+            <p>
+              Variables don't need a declaration, just by using a variable will
+              declared it, but without a default value or description. So use
+              a good name for it to make it clear what the variable is about,
+              like the <code>htmlContent</code> variable in the
+              <code>template.html</code> example.
+            </p>
+            <p>
+              Lehm parses all files in the template for variables before
+              prompting for the values. That means that you can and must re-use
+              variables across files. If in one file a variable has been
+              declared without a default value or description, and in another a
+              default value is set, it will be assigned to the variable.
+              However, once the default value or description has been assigned,
+              it can not be overwritten by a third declaration.
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~/templates/js-component $</span> cat component.js
+{{! this is a plain comment }}
+{{! componentName # Name of your component }}
+{{! namespace = components }}
+{{! initialComment = A JS Component # First line comment }}
+// {{ initialComment }}
+
+<span>~/templates/js-component $</span> cat template.html
+&lt;div class="{{ namespace }} {{ componentName }}"&gt;
+  {{ htmlContent }}
+&lt;/div&gt;
+
+<span>~/templates/js-component $</span> cd
+<span>~ $</span> rm -rf test-comp &amp;&amp; mkdir test-comp &amp;&amp; cd test-comp
+<span>~/test-comp $</span> lehm create js-component
+? Name of your component: test-comp
+? namespace (components): app
+? First line comment (A JS Component): neat :)
+? htmlContent: Pretty kewl
+<span>~/test-comp $</span> cat component.js
+// neat :)
+
+<span>~/test-comp $</span> cat template.html
+&lt;div class="app test-comp"&gt;
+  Pretty kewl
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+
+        <h4 class="title is-4">Boolean Variables with <code>#if</code> and <code>#unless</code></h4>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              ...
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~/templates/js-component $</span> cat style.css
+.{{ componentName }} {
+  {{#if darkStyle }}
+  background: black;
+  color: white;
+  {{else}}
+  background: white;
+  color: black;
+  {{/if}}
+}
+
+<span>~/templates/js-component $</span> cd
+<span>~ $</span> rm -rf test-comp &amp;&amp; mkdir test-comp &amp;&amp; cd test-comp
+<span>~/test-comp $</span> lehm create js-component
+? Name of your component test-comp
+? namespace app
+? First line comment A JS Component
+? htmlContent: Pretty kewl
+? darkStyle (Use arrow keys)
+❯ true
+  false
+<span>~/test-comp $</span> cat style.css
+.test-comp {
+  background: black;
+  color: white;
+}</pre>
           </div>
         </div>
       </div>
