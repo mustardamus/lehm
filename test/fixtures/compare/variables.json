@@ -54,5 +54,13 @@
   "declaredInBlockBlock": {
     "value": null,
     "description": null
+  },
+  "folderVar": {
+    "value": null,
+    "description": "folderVar description"
+  },
+  "fileVar": {
+    "value": null,
+    "description": "fileVar description"
   }
 }

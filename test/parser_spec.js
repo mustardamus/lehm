@@ -23,11 +23,12 @@ describe('Parser Class', () => {
   it('should get all variable names from files', () => {
     let jsonPath = path.join(__dirname, 'fixtures/compare/variables.json')
     let json = require(jsonPath)
+
     json.declaredInSub = { value: null, description: null }
     json.sampleString.value = 'works'
 
     let basePath = path.join(__dirname, 'fixtures/init-project')
-    let filesArr = ['spec.txt', 'sub/sub.txt']
+    let filesArr = ['spec.txt', 'sub/sub.txt', '{{ folderVar }}/{{ fileVar }}.txt']
     let variables = parser.parseFiles(basePath, filesArr)
 
     assert.deepEqual(variables, json)

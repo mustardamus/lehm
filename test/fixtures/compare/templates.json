@@ -11,6 +11,7 @@
     "name": "Project Init",
     "description": "A description what will be generated, requirements, etc",
     "files": [
+      "{{ folderVar }}/{{ fileVar }}.txt",
       "spec.txt",
       "sub/sub.txt"
     ]

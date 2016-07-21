@@ -90,5 +90,15 @@
     "message": "declaredInSub",
     "name": "declaredInSub",
     "type": "input"
+  },
+  {
+    "message": "folderVar description",
+    "name": "folderVar",
+    "type": "input"
+  },
+  {
+    "message": "fileVar description",
+    "name": "fileVar",
+    "type": "input"
   }
 ]

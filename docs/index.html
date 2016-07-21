@@ -85,7 +85,7 @@ js-component
 js-component: component.js | template.html | style.css
 
 Node.js Module - Scaffold for a Node.js Module
-node-module: package.json | lib/index.js | test/test.js</pre>
+node-module: {{ moduleName }}/{{ moduleName }}.js | {{ moduleName }}/package.json</pre>
 
             <p>
               List all templates and their metas and files that are found in the
@@ -395,18 +395,18 @@ js-component: component.js | style.css | template.html</pre>
             <pre><span>~/templates $</span> mkdir node-module &amp;&amp; cd node-module
 <span>~/templates/node-module $</span> mkdir "{{ moduleName }}"
 <span>~/templates/node-module $</span> cd "{{ moduleName }}"
-<span>~/templates/node-module/{{ moduleName }} $</span> echo "{{! moduleName # Name of your Node Module }}">"{{ moduleName }}.js"
+<span>~/templates/node-module/{{ moduleName }} $</span> echo "{{! moduleName # Name of your Node Module }}\n// :O">"{{ moduleName }}.js"
 <span>~/templates/node-module/{{ moduleName }} $</span> ls
 {{ moduleName }}.js
 <span>~/templates/node-module/{{ moduleName }} $</span> cat "{{ moduleName }}.js"
 {{! moduleName # Name of your Node Module }}
+// :O
 
 <span>~/templates/node-module/{{ moduleName }} $</span> cd
 <span>~</span> lehm create node-module
 ? Name of your Node Module: clay
-<span>~</span> ls clay/
-clay.js
-</pre>
+<span>~</span> cat clay/clay.js
+// :O</pre>
           </div>
         </div>
 
