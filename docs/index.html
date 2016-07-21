@@ -134,7 +134,8 @@ Saved.</pre>
           parse and transform the templates. By default the delimiters are
           <code>{{ }}</code>, but you can change them if they clash with the
           content of your templates. See how in the
-          <a href="#configuration">Configuration</a> section.
+          <a href="#configuration">Configuration</a> or
+          <a href="#metas">Template Metas</a> section.
         </p>
 
         <h4 class="title is-4">Create template directory</h4>
@@ -147,10 +148,10 @@ Saved.</pre>
             </p>
             <p>
               We create it in the default
-              Templates Directory, which is in the Home folder of the current user,
-              under the sub-directory <code>~/templates</code>. Again, you can
-              <a href="#configuration">configure it</a> if you want it to be in
-              another path.
+              Templates Directory, which is in the Home folder of the current
+              user, under the sub-directory <code>~/templates</code>. Again, you
+              can <a href="#configuration">configure it</a> if you want it to be
+              in another path.
             </p>
             <p>
               Lets use the <code>lehm list</code> command to check if the newly
@@ -243,7 +244,9 @@ js-component: component.js | style.css | template.html</pre>
           </div>
         </div>
 
-        <h4 class="title is-4">Using, re-using and declaring Variables on the fly</h4>
+        <h4 class="title is-4">
+          Using, re-using and declaring Variables on the fly
+        </h4>
 
         <div class="columns">
           <div class="column is-6">
@@ -308,12 +311,44 @@ js-component: component.js | style.css | template.html</pre>
           </div>
         </div>
 
-        <h4 class="title is-4">Boolean Variables with <code>#if</code> and <code>#unless</code></h4>
+        <h4 class="title is-4">
+          Boolean Variables with <code>#if</code> and <code>#unless</code>
+        </h4>
 
         <div class="columns">
           <div class="column is-6">
             <p>
-              ...
+              Lehm will parse Handlebars' <code>#if</code> and
+              <code>#unless</code> block-statements and turn them into boolean
+              variables that can either be <code>true</code> or
+              <code>false</code>.
+            </p>
+            <p>
+              In the prompt you can choose the <code>true</code> or
+              <code>false</code> value from a list with your arrow keys.
+            </p>
+            <p>
+              If you use <code>#if</code> in your template, the default value of
+              the variable will be <code>true</code>. If you use
+              <code>#unless</code> the default value will be <code>false</code>.
+            </p>
+            <p>
+              You can use the <code>else</code> statement to cover both,
+              <code>true</code> and <code>false</code> cases like shown in the
+              example file <code>style.css</code>.
+            </p>
+            <p>
+              You can assign a description to a boolean variable with the
+              <code>#</code> character in a comment like you do with simple
+              variables. Setting a default value would make no sense, just use
+              either <code>#if</code> or <code>#unless</code>, depending if you
+              want the default value to be <code>true</code> or
+              <code>false</code>.
+            </p>
+            <p>
+              Inside of the block-statements you can use variables normally, or
+              nest other <code>#if</code> or <code>#unless</code>
+              block-statements.
             </p>
           </div>
           <div class="column is-6">
@@ -331,9 +366,9 @@ js-component: component.js | style.css | template.html</pre>
 <span>~/templates/js-component $</span> cd
 <span>~ $</span> rm -rf test-comp &amp;&amp; mkdir test-comp &amp;&amp; cd test-comp
 <span>~/test-comp $</span> lehm create js-component
-? Name of your component test-comp
-? namespace app
-? First line comment A JS Component
+? Name of your component: test-comp
+? namespace (components): app
+? First line comment (A JS Component): neat :)
 ? htmlContent: Pretty kewl
 ? darkStyle (Use arrow keys)
 ❯ true
@@ -345,6 +380,36 @@ js-component: component.js | style.css | template.html</pre>
 }</pre>
           </div>
         </div>
+
+        <h4 class="title is-4">
+          Use variables inside file- and folder-names
+        </h4>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              ...
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~/templates $</span> mkdir node-module &amp;&amp; cd node-module
+<span>~/templates/node-module $</span> mkdir "{{ moduleName }}"
+<span>~/templates/node-module $</span> cd "{{ moduleName }}"
+<span>~/templates/node-module/{{ moduleName }} $</span> echo "{{! moduleName # Name of your Node Module }}">"{{ moduleName }}.js"
+<span>~/templates/node-module/{{ moduleName }} $</span> ls
+{{ moduleName }}.js
+<span>~/templates/node-module/{{ moduleName }} $</span> cat "{{ moduleName }}.js"
+{{! moduleName # Name of your Node Module }}
+
+<span>~/templates/node-module/{{ moduleName }} $</span> cd
+<span>~</span> lehm create node-module
+? Name of your Node Module: clay
+<span>~</span> ls clay/
+clay.js
+</pre>
+          </div>
+        </div>
+
       </div>
 
       <div id="hooks" class="content section">
