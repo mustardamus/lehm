@@ -31,8 +31,8 @@
                 <li><a href="#installation">Installation</a></li>
                 <li><a href="#commands">Commands</a></li>
                 <li><a href="#templates">Template Tags</a></li>
-                <li><a href="#hooks">Template Hooks</a></li>
                 <li><a href="#metas">Template Metas</a></li>
+                <li><a href="#hooks">Template Hooks</a></li>
                 <li><a href="#helpers">Handlebar Helpers</a></li>
                 <li><a href="#configuration">Configuration</a></li>
               </ul>
@@ -388,7 +388,16 @@ js-component: component.js | style.css | template.html</pre>
         <div class="columns">
           <div class="column is-6">
             <p>
-              ...
+              File- and folder-names are parsed for template tags as well. So
+              whenever you use the delimiters you declare a variable just like
+              you would do in a file's content. This is very useful for
+              creating named files and folders.
+            </p>
+            <p>
+              You even can set the default value and the description of the
+              variable. Just use the Handlebars comment <code>!</code> in
+              combination with <code>=</code> and/or <code>#</code> in any
+              file's content of the template, like you've seen before.
             </p>
           </div>
           <div class="column is-6">
@@ -409,15 +418,14 @@ js-component: component.js | style.css | template.html</pre>
 // :O</pre>
           </div>
         </div>
-
-      </div>
-
-      <div id="hooks" class="content section">
-        <h3 class="title">Template Hooks</h3>
       </div>
 
       <div id="metas" class="content section">
         <h3 class="title">Template Metas</h3>
+      </div>
+
+      <div id="hooks" class="content section">
+        <h3 class="title">Template Hooks</h3>
       </div>
 
       <div id="helpers" class="content section">
