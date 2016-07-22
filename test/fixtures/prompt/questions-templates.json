@@ -1,0 +1,13 @@
+[
+  {
+    "type": "list",
+    "name": "template",
+    "message": "Choose Template",
+    "choices": [
+      "template-1",
+      "Template 2 (template-2)",
+      "Template 3 (template-3) - Template 3 Description"
+    ],
+    "filter": "callback"
+  }
+]

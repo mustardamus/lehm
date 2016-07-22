@@ -1,0 +1,18 @@
+{
+  "sampleString": {
+    "value": null,
+    "description": "This is a description for the sampleString variable, with no default value"
+  },
+  "defaultValue": {
+    "value": "Default value for the defaultValue variable (a string), no description",
+    "description": null
+  },
+  "defaultValueWithDesc": {
+    "value": true,
+    "description": "this variable has a default value (a boolean) and a description"
+  },
+  "aNumber": {
+    "value": 13,
+    "description": "this should be parsed as a number"
+  }
+}

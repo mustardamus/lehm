@@ -1,0 +1,23 @@
+{
+  "template-1": {
+    "files": [
+      "some.txt",
+      "files.txt"
+    ]
+  },
+  "template-2": {
+    "name": "Template 2",
+    "files": [
+      "some.txt",
+      "files.txt"
+    ]
+  },
+  "template-3": {
+    "name": "Template 3",
+    "description": "Template 3 Description",
+    "files": [
+      "some.txt",
+      "files.txt"
+    ]
+  }
+}

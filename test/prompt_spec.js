@@ -10,8 +10,8 @@ const prompt = new Prompt()
 
 describe('Prompt Class', () => {
   it('should create the correct inquirer prompt array from variables', () => {
-    let fixturePath = path.join(__dirname, 'fixtures/compare/variables.json')
-    let jsonPath = path.join(__dirname, 'fixtures/compare/questions-variables.json')
+    let fixturePath = path.join(__dirname, 'fixtures/prompt/variables.json')
+    let jsonPath = path.join(__dirname, 'fixtures/prompt/questions-variables.json')
     let fixture = require(fixturePath)
     let questions = prompt.questionsFromVariables(fixture)
     let json = require(jsonPath)
@@ -20,8 +20,8 @@ describe('Prompt Class', () => {
   })
 
   it('should create the correct inquirer prompt array from templates', () => {
-    let fixturePath = path.join(__dirname, 'fixtures/compare/templates.json')
-    let jsonPath = path.join(__dirname, 'fixtures/compare/questions-templates.json')
+    let fixturePath = path.join(__dirname, 'fixtures/prompt/templates.json')
+    let jsonPath = path.join(__dirname, 'fixtures/prompt/questions-templates.json')
     let fixture = require(fixturePath)
     let questions = prompt.questionsFromTemplates(fixture)
     let json = require(jsonPath)
