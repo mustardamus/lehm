@@ -1,0 +1,70 @@
+# Comments
+
+Handlebars comments without any '=' or '#' inside will not be processed.
+So {{! this comment doesn't do anything }}.
+
+
+# Variable Declaration Comments
+
+If a Handlebars comment has a '=' and/or '#' inside, it will be parsed as
+variable declaration that declares the name and the default value and/or
+the description for the variable.
+
+{{! sampleString # This is a description for the sampleString variable, with no default value }}
+
+{{! defaultValue = Default value for the defaultValue variable (a string), no description }}
+
+{{! defaultValueWithDesc = true # this variable has a default value (a boolean) and a description }}
+
+{{! aNumber = 13 # this should be parsed as a number }}
+
+
+# Variable Usage
+
+Now you can use a declared variable from above like so:
+{{ defaultValueWithDesc }}.
+
+However, if a variable has not been declared you can do so just using it in your
+template like so: {{ justDeclared }}. The {{ justDeclared }} variable can then
+be re-used, however, it has no default value or description and will be
+requested from the user as a string.
+
+Further you can use helpers to modify the variable value like so:
+{{ lowerCase sampleString }} with a declared variable, or
+{{ snakeCase playSnake }} with a newly declared variable.
+
+
+# If Statements
+
+If/Else/Unless Handlebar tags will result in a yes/no question for the user and
+a boolean in the variable. For example:
+
+{{#if ifOnlyBoolean}}
+  This is visible if {{ifOnlyBoolean}} is true. Default value is true.
+  You can use other declared variables like {{playSnake}} in blocks, or just
+  declare new ones like {{declaredInBlock}}.
+{{/if}}
+
+{{#if ifElseBoolean}}
+  Visible if {{ifElseBoolean}} is true. Default value is true.
+{{else}}
+  Visible if {{ifElseBoolean}} is false.
+{{/if}}
+
+{{#unless unlessOnlyBoolean}}
+  This is visible if {{unlessOnlyBoolean}} is false. Default value is false.
+{{/unless}}
+
+{{#unless unlessElseBoolean}}
+  Visible if {{unlessElseBoolean}} is false. Default value is false.
+{{else}}
+  Visible if {{unlessElseBoolean}} is true.
+{{/unless}}
+
+{{#if blockInBlock}}
+  You can have if-blocks in if-blocks.
+
+  {{#if blockInBlockInBlock}}
+    And declare new variables: {{declaredInBlockBlock}}
+  {{/if}}
+{{/if}}

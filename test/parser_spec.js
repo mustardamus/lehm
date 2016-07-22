@@ -8,11 +8,11 @@ const fs = require('fs-extra')
 const Parser = require('../lib/parser')
 
 const parser = new Parser()
+const fixturePath = path.join(__dirname, 'fixtures/parser/spec.txt')
+const jsonPath = path.join(__dirname, 'fixtures/parser/compare.json')
 
 describe('Parser Class', () => {
   it('should get all variable names from content', () => {
-    let fixturePath = path.join(__dirname, 'fixtures/init-project/spec.txt')
-    let jsonPath = path.join(__dirname, 'fixtures/compare/variables.json')
     let content = fs.readFileSync(fixturePath, 'utf8')
     let variables = parser.parseVariables(content)
     let json = require(jsonPath)
@@ -21,14 +21,12 @@ describe('Parser Class', () => {
   })
 
   it('should get all variable names from files', () => {
-    let jsonPath = path.join(__dirname, 'fixtures/compare/variables.json')
     let json = require(jsonPath)
+    json.folderVar = { value: null, description: 'folderVar description' }
+    json.fileVar = { value: null, description: 'fileVar description' }
 
-    json.declaredInSub = { value: null, description: null }
-    json.sampleString.value = 'works'
-
-    let basePath = path.join(__dirname, 'fixtures/init-project')
-    let filesArr = ['spec.txt', 'sub/sub.txt', '{{ folderVar }}/{{ fileVar }}.txt']
+    let basePath = path.join(__dirname, 'fixtures/parser')
+    let filesArr = ['spec.txt', '{{ folderVar }}/{{ fileVar }}.txt']
     let variables = parser.parseFiles(basePath, filesArr)
 
     assert.deepEqual(variables, json)
