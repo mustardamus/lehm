@@ -1,8 +1,0 @@
-This is a template in a sub-folder. It also can declare new variables like
-{{ declaredInSub }} or use
-already declared variables like {{ sampleString }}.
-
-You may also set the default value and/or description of a already declared
-variable. Works only if it has not been set in another template before. For
-example, the {{ sampleString }} has no default value. It now has with:
-{{! sampleString = works }}
