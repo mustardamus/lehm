@@ -26,9 +26,6 @@ describe('Prompt Class', () => {
     let questions = prompt.questionsFromTemplates(fixture)
     let json = require(jsonPath)
 
-    assert.equal(questions[0].filter('name'), 'name')
-    assert.equal(questions[0].filter('name - desc'), 'name')
-    questions[0].filter = 'callback'
     assert.deepEqual(questions, json)
   })
 

@@ -4,10 +4,18 @@
     "name": "template",
     "message": "Choose Template",
     "choices": [
-      "template-1",
-      "Template 2 (template-2)",
-      "Template 3 (template-3) - Template 3 Description"
-    ],
-    "filter": "callback"
+      {
+        "name": "\u001b[32mtemplate-1\u001b[39m",
+        "value": "template-1"
+      },
+      {
+        "name": "\u001b[32mTemplate 2\u001b[39m\u001b[33m (template-2)\u001b[39m",
+        "value": "template-2"
+      },
+      {
+        "name": "\u001b[32mTemplate 3\u001b[39m\u001b[33m (template-3)\u001b[39m\u001b[90m - Template 3 Description\u001b[39m",
+        "value": "template-3"
+      }
+    ]
   }
 ]
