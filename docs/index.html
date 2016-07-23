@@ -422,6 +422,98 @@ js-component: component.js | style.css | template.html</pre>
 
       <div id="metas" class="content section">
         <h3 class="title">Template Metas</h3>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              Optionally you can have additional information for a template.
+              They are placed in a <code>.js</code> file that must have the
+              same name as the template (ie the parent folder-name).
+            </p>
+            <p>
+              Let's extend our <code>node-module</code> template by creating a
+              file named <code>node-module.js</code> inside the template folder.
+            </p>
+            <p>
+              Note that this file will not be parsed as a template, thus not
+              created in the target folder by <code>lehm create</code>.
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~/templates/node-module $</span> cat node-module.js
+module.exports = {
+  name: 'Node Module',
+  description: 'A skeleton for a node module',
+  delimiters: '<% %>',
+  ingnore: ['node_modules']
+}
+
+<span>~/templates/node-module $</span> lehm list
+js-component
+js-component: component.js | style.css | template.html
+
+Node Module - A skeleton for a node module
+node-module: {{ moduleName }}/{{ moduleName }}.js</pre>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-6">
+            <h4 class="title is-4"><code>name</code></h4>
+            <p>
+              This is a alias for the template-name given by the parent
+              folder-name. As you can see in the <code>lehm list</code> output,
+              if the <code>name</code> is set it will replace the folder-name.
+            </p>
+            <p>
+              You are also able to create from the template using both names,
+              the parent folder name, and if set, the <code>name</code> meta.
+              <code>lehm create node-module</code> and
+              <code>lehm create "Node Module"</code> is the same thing.
+            </p>
+          </div>
+          <div class="column is-6">
+            <h4 class="title is-4"><code>description</code></h4>
+            <p>
+              A brief description of what your template will generate or
+              any additional info.
+            </p>
+            <p>
+              If the <code>description</code> is set, it will be shown in the
+              output of <code>lehm list</code> or if you use
+              <code>lehm create</code> without any template-name.
+            </p>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-6">
+            <h4 class="title is-4"><code>delimiters</code></h4>
+            <p>
+              If set, these delimiters will overwrite the default
+              (<code>{{ }}</code>) or the ones you have set in a
+              <code>.lehmrc</code> somewhere.
+            </p>
+            <p>
+              This is useful if the template content will clash with your global
+              delimiters. Also if you want to share your template with others,
+              because they may have other global delimiters set.
+            </p>
+          </div>
+          <div class="column is-6">
+            <h4 class="title is-4"><code>ignore</code></h4>
+            <p>
+              This array contains any folder- or file-name you wish to exclude
+              from the generation process. Useful for things like
+              <code>node_modules</code> or the <code>README.md</code> of the
+              template.
+            </p>
+            <p>
+              These entries will simply be skipped for parsing variables or
+              listing files of a template.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div id="hooks" class="content section">
