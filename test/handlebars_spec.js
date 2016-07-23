@@ -6,12 +6,12 @@ const assert = require('assert')
 const Handlebars = require('../lib/handlebars')
 
 describe('Handlebars Proxy', () => {
-  it ('should set default delimiters if none passed', () => {
+  it('should set default delimiters if none passed', () => {
     let handlebars = new Handlebars()
     assert.equal(handlebars.delimiters, '{{ }}')
   })
 
-  it ('should set custom delimiters if passed', () => {
+  it('should set custom delimiters if passed', () => {
     let handlebars = new Handlebars('<% %>')
     assert.equal(handlebars.delimiters, '<% %>')
   })

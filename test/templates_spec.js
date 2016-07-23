@@ -18,7 +18,7 @@ describe('Templates Class', () => {
 
   it('should generate a object of all templates', () => {
     let obj = templates.getTemplates()
-    
+
     fixture['template-1'].path = path.join(templatesPath, 'template-1')
     fixture['template-2'].path = path.join(templatesPath, 'template-2')
     obj['template-2'].before = 'function'
