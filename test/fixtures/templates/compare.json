@@ -13,6 +13,12 @@
     "files": [
       "file2.txt",
       "file3.txt"
-    ]
+    ],
+    "ignore": [
+      "node_modules",
+      "file1.txt"
+    ],
+    "before": "function",
+    "after": "function"
   }
 }

@@ -17,7 +17,11 @@ describe('Templates Class', () => {
   })
 
   it('should generate a object of all templates', () => {
-    assert.deepEqual(templates.getTemplates(), fixture)
+    let obj = templates.getTemplates()
+    obj['template-2'].before = 'function'
+    obj['template-2'].after = 'function'
+
+    assert.deepEqual(obj, fixture)
   })
 
   it('should find template by folder-name or meta-name', () => {
