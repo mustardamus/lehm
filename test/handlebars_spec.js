@@ -18,16 +18,16 @@ describe('Handlebars Proxy', () => {
 
   it('should use the default delimiters', () => {
     let handlebars = new Handlebars()
-    let template = handlebars.compile('{{ check }}')
+    let template = handlebars.transform('{{ check }}', { check: 'yes' })
 
-    assert.equal(template({ check: 'yes' }), 'yes')
+    assert.equal(template, 'yes')
   })
 
   it('should use the custom delimiters', () => {
     let handlebars = new Handlebars('<% %>')
-    let template = handlebars.compile('<% check %>')
+    let template = handlebars.transform('<% check %> {{ dontTouchMe }}', { check: 'yes' })
 
-    assert.equal(template({ check: 'yes' }), 'yes')
+    assert.equal(template, 'yes {{ dontTouchMe }}')
   })
 
   it('should parse the template with default delimiters', () => {
