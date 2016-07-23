@@ -14,6 +14,9 @@ module.exports = {
   // the description will be showed in the 'lehm list' command
   description: 'Template 2 Description',
 
+  // template-specific delimiters that overwrite the globel ones
+  delimiters: '<% %>',
+
   // these folders/files will be ignored and not treated as templates
   ignore: ['node_modules', 'file1.txt'],
 

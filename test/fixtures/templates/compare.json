@@ -9,6 +9,7 @@
   "template-2": {
     "name": "Template 2",
     "description": "Template 2 Description",
+    "delimiters": "<% %>",
     "files": [
       "file2.txt",
       "file3.txt"
