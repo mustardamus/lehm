@@ -25,9 +25,10 @@ describe('Parser Class', () => {
     json.folderVar = { value: null, description: 'folderVar description' }
     json.fileVar = { value: null, description: 'fileVar description' }
 
-    let basePath = path.join(__dirname, 'fixtures/parser')
-    let filesArr = ['spec.txt', '{{ folderVar }}/{{ fileVar }}.txt']
-    let variables = parser.parseFiles(basePath, filesArr)
+    let variables = parser.parseFiles({
+      path: path.join(__dirname, 'fixtures/parser'),
+      files: ['spec.txt', '{{ folderVar }}/{{ fileVar }}.txt']
+    })
 
     assert.deepEqual(variables, json)
   })
