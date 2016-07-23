@@ -4,5 +4,7 @@
     "{{ moduleName }}/{{ moduleName }}.txt",
     "boolean.txt",
     "number.txt"
-  ]
+  ],
+  "before": "function",
+  "after": "function"
 }

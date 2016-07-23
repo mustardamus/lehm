@@ -5,6 +5,7 @@
 const assert = require('assert')
 const path = require('path')
 const fs = require('fs-extra')
+const sinon = require('sinon')
 const Generator = require('../lib/generator')
 
 const templateObj = require('./fixtures/generator/template.json')
@@ -22,10 +23,13 @@ describe('Generator Class', () => {
   })
 
   it('should set the passed in configs', () => {
+    assert.deepEqual(generator.templateObj, templateObj)
     assert.equal(generator.srcPath, templateObj.path)
     assert.equal(generator.distPath, distPath)
     assert.deepEqual(generator.filesArr, templateObj.files)
     assert.deepEqual(generator.data, data)
+    assert.equal(generator.beforeHook, 'function')
+    assert.equal(generator.afterHook, 'function')
   })
 
   it('should transform and generate the files', () => {
@@ -48,5 +52,62 @@ describe('Generator Class', () => {
     assert.equal(fs.readFileSync(distFile1, 'utf8'), fs.readFileSync(fixFile1, 'utf8'))
     assert.equal(fs.readFileSync(distFile2, 'utf8'), fs.readFileSync(fixFile2, 'utf8'))
     assert.equal(fs.readFileSync(distFile3, 'utf8'), fs.readFileSync(fixFile3, 'utf8'))
+  })
+
+  it('should run the before hook', (done) => {
+    fs.removeSync(distPath)
+    assert.equal(fs.existsSync(distPath), false)
+
+    let hook = function (srcPath, distPath, variables, utils, cb) {
+      utils.extendedBefore = true
+
+      assert.deepEqual(this, templateObj)
+      assert.equal(fs.existsSync(distPath), false)
+      assert.deepEqual(variables, data)
+
+      cb()
+      done()
+    }
+    generator.beforeHook = sinon.spy(hook)
+    generator.run()
+
+    let args = generator.beforeHook.getCall(0).args
+
+    assert.equal(generator.beforeHook.calledOnce, true)
+    assert.equal(args[0], templateObj.path)
+    assert.equal(args[1], distPath)
+    assert.ok(args[3].Fs)
+    assert.ok(args[3].Inquirer)
+    assert.ok(args[3].Shell)
+    assert.ok(args[3].Chalk)
+    assert.ok(args[3].Handlebars)
+  })
+
+  it('should run the after hook', (done) => {
+    fs.removeSync(distPath)
+    assert.equal(fs.existsSync(distPath), false)
+
+    let hook = function (srcPath, distPath, variables, utils) {
+      assert.deepEqual(this, templateObj)
+      assert.equal(fs.existsSync(distPath), true)
+      assert.equal(utils.extendedBefore, true)
+      assert.deepEqual(variables, data)
+
+      done()
+    }
+    generator.beforeHook = null
+    generator.afterHook = sinon.spy(hook)
+    generator.run()
+
+    let args = generator.afterHook.getCall(0).args
+
+    assert.equal(generator.afterHook.calledOnce, true)
+    assert.equal(args[0], templateObj.path)
+    assert.equal(args[1], distPath)
+    assert.ok(args[3].Fs)
+    assert.ok(args[3].Inquirer)
+    assert.ok(args[3].Shell)
+    assert.ok(args[3].Chalk)
+    assert.ok(args[3].Handlebars)
   })
 })
