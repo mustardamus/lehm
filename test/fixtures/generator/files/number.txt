@@ -1,0 +1,4 @@
+{{! initial comments should be trimmed }}
+{{! aNumber # as well as variable declarations }}
+
+{{ aNumber }}

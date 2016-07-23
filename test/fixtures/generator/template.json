@@ -1,0 +1,8 @@
+{
+  "path": "./files",
+  "files": [
+    "{{ moduleName }}/{{ moduleName }}.txt",
+    "boolean.txt",
+    "number.txt"
+  ]
+}
