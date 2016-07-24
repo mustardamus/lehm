@@ -52,10 +52,12 @@
             </p>
             <p>
               It's build on <a href="http://handlebarsjs.com">Handlebars.js</a>
-              and has very simple hooks with access to
+              and has simple hooks with access to
               <a href="https://github.com/SBoudrias/Inquirer.js">Inquirer.js</a>
-              and <a href="https://github.com/shelljs/shelljs">Shell.js</a>,
-              which makes it very extendible.
+              <a href="https://github.com/shelljs/shelljs">Shell.js</a>,
+              <a href="https://github.com/jprichardson/node-fs-extra">Fs-Extra</a>
+              and <a href="https://lodash.com/docs">Lodash</a>, which makes it
+              very extendible.
             </p>
             <p>
               Generate single files, a bunch of them or scaffold whole projects
@@ -518,6 +520,62 @@ node-module: {{ moduleName }}/{{ moduleName }}.js</pre>
 
       <div id="hooks" class="content section">
         <h3 class="title">Template Hooks</h3>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              ...
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~/templates/node-module $</span> cat node-module.js
+module.exports = {
+  delimiters: '<% %>',
+
+  before: function (srcPath, distPath, variables, utils, cb) {
+    utils.Handlebars.registerHelper('loud', (val) => {
+      return utils._.toUpper(val) + '!'
+    })
+
+    utils.Inquirer.prompt([{
+      type: 'list',
+      name: 'abort',
+      message: 'Abort?',
+      choices: ['No', 'Yes']
+    }]).then((answers) => {
+      if (answers.abort === 'Yes') {
+        cb('Aborted by user')
+      } else {
+        cb()
+      }
+    })
+  },
+
+  after: function (srcPath, distPath, variables, utils) {
+    utils.Shell.cd(distPath + '/' + variables.moduleName)
+    utils.Shell.exec('npm init -y')
+    utils.Shell.exec('npm install lodash --save')
+
+    let str = utils.Handlebars.transform('<% loud "Lets rock" %>')
+    console.log(utils.Chalk.blue(str))
+  }
+}
+
+<span>~/templates/node-module $</span> cd &amp;&amp; rm -rf clay
+<span>~ $</span> lehm create node-module
+? Name of your Node Module: clay
+? Abort? No
+Wrote to ~/templates/clay/package.json:
+...
+clay@1.0.0 ~/templates/clay
+└── lodash@4.13.1
+...
+LETS ROCK!
+<span>~ $</span> ls clay
+node_modules package.json clay.js
+</pre>
+          </div>
+        </div>
       </div>
 
       <div id="helpers" class="content section">
