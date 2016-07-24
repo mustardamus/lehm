@@ -25,9 +25,9 @@ describe('Handlebars Proxy', () => {
 
   it('should use the custom delimiters', () => {
     let handlebars = new Handlebars('<% %>')
-    let template = handlebars.transform('<% check %> {{ dontTouchMe }}', { check: 'yes' })
+    let template = handlebars.transform('<% check %> <% check %> {{ dontTouchMe }}', { check: 'yes' })
 
-    assert.equal(template, 'yes {{ dontTouchMe }}')
+    assert.equal(template, 'yes yes {{ dontTouchMe }}')
   })
 
   it('should parse the template with default delimiters', () => {
@@ -44,5 +44,17 @@ describe('Handlebars Proxy', () => {
 
     assert.equal(ast[0].type, 'MustacheStatement')
     assert.equal(ast[0].path.original, 'check')
+  })
+
+  it('should register a custom helper', () => {
+    let handlebars = new Handlebars('<% %>')
+
+    handlebars.registerHelper('loud', (val) => {
+      return val.toUpperCase() + '!'
+    })
+
+    let template = handlebars.transform('<% loud check %>', { check: 'yes' })
+
+    assert.equal(template, 'YES!')
   })
 })
