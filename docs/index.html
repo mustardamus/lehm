@@ -685,6 +685,65 @@ node_modules package.json clay.js
 
       <div id="helpers" class="content section">
         <h3 class="title">Handlebar Helpers</h3>
+        <p>
+          Lehm extends Handlebars with these basic helpers, so you can use them
+          in your template-files without the need for a <code>before</code>
+          hook. But remember, you can add new helpers by using the
+          <code>utils.Handlebars.registerHelper</code> method in the
+          <code>before</code> hook.
+        </p>
+
+        <div class="columns">
+          <div class="column is-6">
+            <code>{{ lowerCase "LOWERCASE" }} = lowercase</code>
+          </div>
+          <div class="column is-6">
+            <code>{{ upperCase "uppercase" }} = UPPERCASE</code>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <code>{{ snakeCase "snake-case" }} = snake_case</code>
+          </div>
+          <div class="column is-6">
+            <code>{{ camelCase "camel_case" }} = camelCase</code>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <code>{{ kebabCase "kebabCase" }} = kebab-case</code>
+          </div>
+          <div class="column is-6">
+            <code>{{ capitalize "capitalize" }} = Capitalize</code>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <code>{{ pluralize "user" }} = users</code>
+          </div>
+          <div class="column is-6">
+            <code>{{ singularize "users" }} = user</code>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-12">
+            <code>{{ combine "singularize,capitalize" "users" }} = User</code>
+            <p>
+              With this helper you can combine multiple helpers that take a
+              single String as parameter. That means you can combine any helper
+              from above and any custom helper you may have written. The first
+              argument is a comma seperated String with all helpers that you
+              want to apply one after the other. The second argument is your
+              String you want to transform (ie a variable in your
+              template-files).
+            </p>
+            <p>
+              If you write custom helpers you need to make sure that the
+              variable is always the last parameter, just like in the combine
+              helper above.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div id="configuration" class="content section">

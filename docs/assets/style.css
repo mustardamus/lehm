@@ -218,3 +218,11 @@ header a:hover {
   color: #333 !important;
   border-bottom: 3px solid #66AEF3 !important;
 }
+
+#helpers .columns code {
+  font-size: 1.1em;
+}
+
+#helpers .is-12, #helpers .is-12 p {
+  margin-top: 12px;
+}
