@@ -748,6 +748,96 @@ node_modules package.json clay.js
 
       <div id="configuration" class="content section">
         <h3 class="title">Configuration</h3>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              There are only two things you could configure with Lehm: the path
+              where the templates are found, and which delimiters to use.
+              Remember, you can overwrite the delimiters specifically for a template
+              with the <a href="#metas">Template Metas</a>.
+            </p>
+            <p>
+              Out of the box Lehm looks in the path <code>~/templates</code> for
+              templates, and <code>{{ }}</code> are used as default delimiters.
+            </p>
+            <p>
+              You can permanently overwrite these defaults by creating a
+              <code>.lehmrc</code> file in your users home folder. This is a JSON
+              formatted file with the following fields:
+            </p>
+            <p>
+              <code>templatesPath</code> - Full path where the global templates can
+              be found.
+            </p>
+            <p>
+              <code>handlebarsDelimiters</code> - A String to define the delimiters
+              used by Handlebars.js. The delimiters must have a space in between
+              them.
+            </p>
+            <p>
+              For convenience you can use the <code>lehm config</code> command
+              to set these values. It will save them to <code>~/.lehmrc</code>.
+              Easy-peasy.
+            </p>
+            <p>
+              If you use the <code>lehm</code> command, it will look for a
+              <code>.lehmrc</code> in the current working directory before
+              checking the home directory or using the defaults.
+            </p>
+            <p>
+              That way you can have a project-specific configuration for Lehm.
+              Use a relative path in <code>templatesPath</code> to store the
+              templates in the same directory as your project.
+            </p>
+            <p>
+              That's useful if you want to have global temlpates for scaffolding
+              whole projects, but want to have components templates for a
+              specific project stored in the same folder to keep it all
+              together, and for other people to use.
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~ $</span> lehm list
+Templates Path: /Users/mustardamus/templates
+
+js-component
+js-component: component.js | style.css | template.html
+
+node-module
+node-module: <% moduleName %>/<% moduleName %>.js
+<span>~ $</span> mkdir -p templates-alt/test
+<span>~ $</span> echo "<% itWorks %>">templates-alt/test/test.txt
+<span>~ $</span> lehm config
+? Templates Path: ~/templates-alt
+? Handlebars Delimiters: <% %>
+Saved.
+<span>~ $</span> cat .lehmrc
+{
+  "templatesPath": "/Users/mustardamus/templates-alt",
+  "handlebarsDelimiters": "<% %>"
+}
+
+<span>~ $</span> lehm list
+Templates Path: /Users/mustardamus/templates-alt
+
+test
+test: test.txt
+<span>~ $</span> mkdir -p project/tpl/local/
+<span>~ $</span> cd project
+<span>~/project $</span> echo ":)">tpl/local/only.txt
+<span>~/project $</span> cat .lehmrc
+{
+  "templatesPath": "./tpl",
+  "handlebarsDelimiters": "<% %>"
+}
+
+<span>~/project $</span> lehm list
+Templates Path: ~/project/tpl
+
+local
+local: only.txt</pre>
+        </div>
       </div>
     </div>
   </body>
