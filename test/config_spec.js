@@ -20,10 +20,6 @@ describe('Config Class', () => {
     assert.deepEqual(config.config, fixture)
   })
 
-  it('should return the configs from the config file', () => {
-    assert.deepEqual(config.read(), fixture)
-  })
-
   it('should save new configs to a config file in the home path', () => {
     let oldContent = null
 
