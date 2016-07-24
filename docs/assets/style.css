@@ -7,12 +7,12 @@ html, body {
   background: #4F4E57;
 }
 
-p a, p a:visited, li a, li a:visited {
+p a, p a:visited {
   color: #66AEF3 !important;
   border-bottom: 3px solid #F4E9DF !important;
 }
 
-p a:hover, li a:hover {
+p a:hover {
   color: #333 !important;
   border-bottom: 3px solid #66AEF3 !important;
 }
@@ -207,4 +207,14 @@ header a:hover {
   padding: 5px 7px;
   min-height: 180px;
   margin-bottom: 10px;
+}
+
+#hooks li a, #hooks li a:visited {
+  color: #66AEF3 !important;
+  border-bottom: 3px solid #F4E9DF !important;
+}
+
+#hooks li a:hover {
+  color: #333 !important;
+  border-bottom: 3px solid #66AEF3 !important;
 }
