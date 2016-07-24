@@ -5,7 +5,7 @@
 const assert = require('assert')
 const Handlebars = require('../lib/handlebars')
 
-describe('Handlebars Proxy', () => {
+describe('Handlebars Class', () => {
   it('should set default delimiters if none passed', () => {
     let handlebars = new Handlebars()
     assert.equal(handlebars.delimiters, '{{ }}')
@@ -56,5 +56,19 @@ describe('Handlebars Proxy', () => {
     let template = handlebars.transform('<% loud check %>', { check: 'yes' })
 
     assert.equal(template, 'YES!')
+  })
+
+  it('should have extended with basic helpers', () => {
+    let h = new Handlebars()
+
+    assert.equal(h.transform('{{ lowerCase "LOWERCASE" }}'), 'lowercase')
+    assert.equal(h.transform('{{ upperCase "uppercase" }}'), 'UPPERCASE')
+    assert.equal(h.transform('{{ snakeCase "snake-case" }}'), 'snake_case')
+    assert.equal(h.transform('{{ camelCase "camel-case" }}'), 'camelCase')
+    assert.equal(h.transform('{{ kebabCase "kebabCase" }}'), 'kebab-case')
+    assert.equal(h.transform('{{ capitalize "capitalize" }}'), 'Capitalize')
+    assert.equal(h.transform('{{ pluralize "user" }}'), 'users')
+    assert.equal(h.transform('{{ singularize "users" }}'), 'user')
+    assert.equal(h.transform('{{ combine "singularize,capitalize" "users" }}'), 'User')
   })
 })
