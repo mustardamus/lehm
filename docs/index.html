@@ -524,7 +524,95 @@ node-module: {{ moduleName }}/{{ moduleName }}.js</pre>
         <div class="columns">
           <div class="column is-6">
             <p>
-              ...
+              With the <code>before</code> and <code>after</code> hook you can
+              handle work that template parsing alone would not get done.
+            </p>
+            <p>
+              These are functions that are stored in the same file as the
+              template-metas, a <code>.js</code> file that has the same name
+              as the parent folder. <code>node-module.js</code> in the example.
+            </p>
+
+            <h4 class="title is-4"><code>before</code></h4>
+            <p>
+              The <code>before</code> hook is called before any file is
+              generated, but after the template-files have been parsed for
+              variables and the user has been prompted for values.
+            </p>
+            <p>
+              Most of the time you want to extend Handlebars with custom
+              helpers (<code>utils.Handlebars.registerHelper</code>) that you
+              can use in your template-files. Another common task is to
+              manipulate the <code>variables</code> that are passed into the
+              template.
+            </p>
+            <p>
+              The hook function is called with the following parameters:
+            </p>
+            <p>
+              <code>srcPath</code> - The full path where the template-files are
+              located.
+            </p>
+            <p>
+              <code>distPath</code> - The full path where files will be
+              generated.
+            </p>
+            <p>
+              <code>variables</code> - An object with variable-names as keys,
+              and the user entered input as values. Modify a value in this
+              object, and it will be used in template-files.
+            </p>
+            <p>
+              <code>utils</code> - An object with instances of the following
+              tools:
+
+              <ul>
+                <li>
+                  <a href="http://handlebarsjs.com">utils.Handlebars</a> -
+                  A slightly modified Handlebars.js. This
+                  version is aware of custom delimiters. Most of the time you
+                  want to use <code>utils.Handlebars.registerHelper</code>
+                  to register custom helpers you can use in your template-files.
+                  It has a extra function
+                  <code>utils.Handlebars.transform(str, data)</code> to
+                  transform template strings with custom delimiters (see
+                  example).
+                </li>
+                <li>
+                  <a href="https://github.com/SBoudrias/Inquirer.js">
+                    utils.Inquirer
+                  </a> - With Inquirer.js you are able to prompt the user
+                  and execute different actions depending on the answers.
+                </li>
+                <li>
+                  <a href="https://github.com/shelljs/shelljs">utils.Shell</a> -
+                  With Shell.js you are able to execute system commands. Useful
+                  for all kinds of stuff: download files, install dependencies,
+                  etc.
+                </li>
+                <li>
+                  <a href="https://github.com/jprichardson/node-fs-extra">
+                    utils.Fs
+                  </a> - With fs-extra you can do any kind of action you can do
+                  with the normal Node.js' fs module, and a couple useful more.
+                </li>
+                <li>
+                  <a href="https://lodash.com/docs">utils._</a> - With Lodash
+                  you receive a rather big toolbelt for all sorts of things to
+                  work with Arrays, Objects, Functions and Strings.
+                </li>
+                <li>
+                  <a href="https://github.com/chalk/chalk">utils.Chalk</a> -
+                  With Chalk you can style terminal output. This is useful to
+                  show additional infos to the user nicely formatted.
+                </li>
+              </ul>
+            </p>
+            <p>
+              <code>cb</code> - The callback you need to call when everything is
+              ready to proceed generating the files. Call this function without
+              any parameter to continue. Call it with a error message, a String,
+              to abort the generation process and show the message.
             </p>
           </div>
           <div class="column is-6">
@@ -574,6 +662,23 @@ LETS ROCK!
 <span>~ $</span> ls clay
 node_modules package.json clay.js
 </pre>
+            <p></p>
+            <h4 class="title is-4"><code>after</code></h4>
+            <p>
+              The <code>after</code> hook is called after all the files have
+              been generated.
+            </p>
+            <p>
+              Here you can finish the generation process, like installing
+              dependencies or move files around or show any additional info
+              that is useful to the user.
+            </p>
+            <p>
+              It has has the same function parameters like the
+              <code>before</code> hook, except there is no <code>cb</code> to
+              indicate to continue. As far as Lehm is concerned, the process
+              is done when all files are generated.
+            </p>
           </div>
         </div>
       </div>
