@@ -79,6 +79,17 @@ header a:hover {
   text-decoration: underline;
 }
 
+footer {
+  text-align: center;
+  background: #4F4E57;
+  padding: 70px 0 20px 0;
+  color: #999;
+}
+
+footer a {
+  color: #66AEF3;
+}
+
 .column.is-3 {
   position: relative;
 }
