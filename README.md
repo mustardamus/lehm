@@ -5,7 +5,7 @@ templates and generate files from them without configuring a thing or writing
 any code.
 
 It's build on [Handlebars.js](http://handlebarsjs.com) and has simple hooks
-with access to [Inquirer.js]()https://github.com/SBoudrias/Inquirer.js,
+with access to [Inquirer.js](https://github.com/SBoudrias/Inquirer.js),
 [Shell.js](https://github.com/shelljs/shelljs),
 [Fs-Extra](https://github.com/jprichardson/node-fs-extra) and
 [Lodash](https://lodash.com/docs), which makes it very extendible.
