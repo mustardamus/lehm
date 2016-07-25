@@ -1,7 +1,5 @@
 # Lehm - a file-generator that gets out of your way
 
-## What?
-
 Lehm is a command-line file-generator that aims to get out of your way. Write
 templates and generate files from them without configuring a thing or writing
 any code.
@@ -25,6 +23,7 @@ Documentation can be found under
 
     npm test
     npm run lint
+    npm run gh-pages
 
 ## License
 
