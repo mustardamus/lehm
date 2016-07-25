@@ -1,4 +1,4 @@
 # Lehm
+## a file-generator that gets out of your way
 
-Work in progress. See the [Spec Fixture](fixtures/init-project/spec.txt) for a
-brief introduction.
+![](http://g.recordit.co/jBApEMMAI3.gif)
