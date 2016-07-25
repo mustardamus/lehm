@@ -30,4 +30,4 @@ Documentation can be found under
 
 ## License
 
-Published under the [MIT License](MIT LICENSE).
+Published under the [MIT License](LICENSE).
