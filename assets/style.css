@@ -79,6 +79,17 @@ header a:hover {
   text-decoration: underline;
 }
 
+footer {
+  text-align: center;
+  background: #4F4E57;
+  padding: 70px 0 20px 0;
+  color: #999;
+}
+
+footer a {
+  color: #66AEF3;
+}
+
 .column.is-3 {
   position: relative;
 }
@@ -207,4 +218,22 @@ header a:hover {
   padding: 5px 7px;
   min-height: 180px;
   margin-bottom: 10px;
+}
+
+#hooks li a, #hooks li a:visited {
+  color: #66AEF3 !important;
+  border-bottom: 3px solid #F4E9DF !important;
+}
+
+#hooks li a:hover {
+  color: #333 !important;
+  border-bottom: 3px solid #66AEF3 !important;
+}
+
+#helpers .columns code {
+  font-size: 1.1em;
+}
+
+#helpers .is-12, #helpers .is-12 p {
+  margin-top: 12px;
 }

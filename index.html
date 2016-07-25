@@ -31,8 +31,8 @@
                 <li><a href="#installation">Installation</a></li>
                 <li><a href="#commands">Commands</a></li>
                 <li><a href="#templates">Template Tags</a></li>
-                <li><a href="#hooks">Template Hooks</a></li>
                 <li><a href="#metas">Template Metas</a></li>
+                <li><a href="#hooks">Template Hooks</a></li>
                 <li><a href="#helpers">Handlebar Helpers</a></li>
                 <li><a href="#configuration">Configuration</a></li>
               </ul>
@@ -52,10 +52,12 @@
             </p>
             <p>
               It's build on <a href="http://handlebarsjs.com">Handlebars.js</a>
-              and has very simple hooks with access to
+              and has simple hooks with access to
               <a href="https://github.com/SBoudrias/Inquirer.js">Inquirer.js</a>
-              and <a href="https://github.com/shelljs/shelljs">Shell.js</a>,
-              which makes it very extendible.
+              <a href="https://github.com/shelljs/shelljs">Shell.js</a>,
+              <a href="https://github.com/jprichardson/node-fs-extra">Fs-Extra</a>
+              and <a href="https://lodash.com/docs">Lodash</a>, which makes it
+              very extendible.
             </p>
             <p>
               Generate single files, a bunch of them or scaffold whole projects
@@ -85,7 +87,7 @@ js-component
 js-component: component.js | template.html | style.css
 
 Node.js Module - Scaffold for a Node.js Module
-node-module: package.json | lib/index.js | test/test.js</pre>
+node-module: {{ moduleName }}/{{ moduleName }}.js | {{ moduleName }}/package.json</pre>
 
             <p>
               List all templates and their metas and files that are found in the
@@ -134,7 +136,8 @@ Saved.</pre>
           parse and transform the templates. By default the delimiters are
           <code>{{ }}</code>, but you can change them if they clash with the
           content of your templates. See how in the
-          <a href="#configuration">Configuration</a> section.
+          <a href="#configuration">Configuration</a> or
+          <a href="#metas">Template Metas</a> section.
         </p>
 
         <h4 class="title is-4">Create template directory</h4>
@@ -147,10 +150,10 @@ Saved.</pre>
             </p>
             <p>
               We create it in the default
-              Templates Directory, which is in the Home folder of the current user,
-              under the sub-directory <code>~/templates</code>. Again, you can
-              <a href="#configuration">configure it</a> if you want it to be in
-              another path.
+              Templates Directory, which is in the Home folder of the current
+              user, under the sub-directory <code>~/templates</code>. Again, you
+              can <a href="#configuration">configure it</a> if you want it to be
+              in another path.
             </p>
             <p>
               Lets use the <code>lehm list</code> command to check if the newly
@@ -243,7 +246,9 @@ js-component: component.js | style.css | template.html</pre>
           </div>
         </div>
 
-        <h4 class="title is-4">Using, re-using and declaring Variables on the fly</h4>
+        <h4 class="title is-4">
+          Using, re-using and declaring Variables on the fly
+        </h4>
 
         <div class="columns">
           <div class="column is-6">
@@ -308,12 +313,44 @@ js-component: component.js | style.css | template.html</pre>
           </div>
         </div>
 
-        <h4 class="title is-4">Boolean Variables with <code>#if</code> and <code>#unless</code></h4>
+        <h4 class="title is-4">
+          Boolean Variables with <code>#if</code> and <code>#unless</code>
+        </h4>
 
         <div class="columns">
           <div class="column is-6">
             <p>
-              ...
+              Lehm will parse Handlebars' <code>#if</code> and
+              <code>#unless</code> block-statements and turn them into boolean
+              variables that can either be <code>true</code> or
+              <code>false</code>.
+            </p>
+            <p>
+              In the prompt you can choose the <code>true</code> or
+              <code>false</code> value from a list with your arrow keys.
+            </p>
+            <p>
+              If you use <code>#if</code> in your template, the default value of
+              the variable will be <code>true</code>. If you use
+              <code>#unless</code> the default value will be <code>false</code>.
+            </p>
+            <p>
+              You can use the <code>else</code> statement to cover both,
+              <code>true</code> and <code>false</code> cases like shown in the
+              example file <code>style.css</code>.
+            </p>
+            <p>
+              You can assign a description to a boolean variable with the
+              <code>#</code> character in a comment like you do with simple
+              variables. Setting a default value would make no sense, just use
+              either <code>#if</code> or <code>#unless</code>, depending if you
+              want the default value to be <code>true</code> or
+              <code>false</code>.
+            </p>
+            <p>
+              Inside of the block-statements you can use variables normally, or
+              nest other <code>#if</code> or <code>#unless</code>
+              block-statements.
             </p>
           </div>
           <div class="column is-6">
@@ -331,9 +368,9 @@ js-component: component.js | style.css | template.html</pre>
 <span>~/templates/js-component $</span> cd
 <span>~ $</span> rm -rf test-comp &amp;&amp; mkdir test-comp &amp;&amp; cd test-comp
 <span>~/test-comp $</span> lehm create js-component
-? Name of your component test-comp
-? namespace app
-? First line comment A JS Component
+? Name of your component: test-comp
+? namespace (components): app
+? First line comment (A JS Component): neat :)
 ? htmlContent: Pretty kewl
 ? darkStyle (Use arrow keys)
 ❯ true
@@ -345,23 +382,467 @@ js-component: component.js | style.css | template.html</pre>
 }</pre>
           </div>
         </div>
-      </div>
 
-      <div id="hooks" class="content section">
-        <h3 class="title">Template Hooks</h3>
+        <h4 class="title is-4">
+          Use variables inside file- and folder-names
+        </h4>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              File- and folder-names are parsed for template tags as well. So
+              whenever you use the delimiters you declare a variable just like
+              you would do in a file's content. This is very useful for
+              creating named files and folders.
+            </p>
+            <p>
+              You even can set the default value and the description of the
+              variable. Just use the Handlebars comment <code>!</code> in
+              combination with <code>=</code> and/or <code>#</code> in any
+              file's content of the template like you've seen before.
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~/templates $</span> mkdir node-module &amp;&amp; cd node-module
+<span>~/templates/node-module $</span> mkdir "{{ moduleName }}"
+<span>~/templates/node-module $</span> cd "{{ moduleName }}"
+<span>~/templates/node-module/{{ moduleName }} $</span> echo "{{! moduleName # Name of your Node Module }}\n// :O">"{{ moduleName }}.js"
+<span>~/templates/node-module/{{ moduleName }} $</span> ls
+{{ moduleName }}.js
+<span>~/templates/node-module/{{ moduleName }} $</span> cat "{{ moduleName }}.js"
+{{! moduleName # Name of your Node Module }}
+// :O
+
+<span>~/templates/node-module/{{ moduleName }} $</span> cd
+<span>~</span> lehm create node-module
+? Name of your Node Module: clay
+<span>~</span> cat clay/clay.js
+// :O</pre>
+          </div>
+        </div>
       </div>
 
       <div id="metas" class="content section">
         <h3 class="title">Template Metas</h3>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              Optionally you can have additional information for a template.
+              They are placed in a <code>.js</code> file that must have the
+              same name as the template (ie the parent folder-name).
+            </p>
+            <p>
+              Let's extend our <code>node-module</code> template by creating a
+              file named <code>node-module.js</code> inside the template folder.
+            </p>
+            <p>
+              Note that this file will not be parsed as a template, thus not
+              created in the target folder by <code>lehm create</code>.
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~/templates/node-module $</span> cat node-module.js
+module.exports = {
+  name: 'Node Module',
+  description: 'A skeleton for a node module',
+  delimiters: '<% %>',
+  ingnore: ['node_modules']
+}
+
+<span>~/templates/node-module $</span> lehm list
+js-component
+js-component: component.js | style.css | template.html
+
+Node Module - A skeleton for a node module
+node-module: {{ moduleName }}/{{ moduleName }}.js</pre>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-6">
+            <h4 class="title is-4"><code>name</code></h4>
+            <p>
+              This is a alias for the template-name given by the parent
+              folder-name. As you can see in the <code>lehm list</code> output,
+              if the <code>name</code> is set it will replace the folder-name.
+            </p>
+            <p>
+              You are also able to create from the template using both names,
+              the parent folder name, and if set, the <code>name</code> meta.
+              <code>lehm create node-module</code> and
+              <code>lehm create "Node Module"</code> is the same thing.
+            </p>
+          </div>
+          <div class="column is-6">
+            <h4 class="title is-4"><code>description</code></h4>
+            <p>
+              A brief description of what your template will generate or
+              any additional info.
+            </p>
+            <p>
+              If the <code>description</code> is set, it will be shown in the
+              output of <code>lehm list</code> or if you use
+              <code>lehm create</code> without any template-name.
+            </p>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-6">
+            <h4 class="title is-4"><code>delimiters</code></h4>
+            <p>
+              If set, these delimiters will overwrite the default
+              (<code>{{ }}</code>) or the ones you have set in a
+              <code>.lehmrc</code> somewhere.
+            </p>
+            <p>
+              This is useful if the template content will clash with your global
+              delimiters. Also if you want to share your template with others,
+              because they may have other global delimiters set.
+            </p>
+          </div>
+          <div class="column is-6">
+            <h4 class="title is-4"><code>ignore</code></h4>
+            <p>
+              This array contains any folder- or file-name you wish to exclude
+              from the generation process. Useful for things like
+              <code>node_modules</code> or the <code>README.md</code> of the
+              template.
+            </p>
+            <p>
+              These entries will simply be skipped for parsing variables or
+              listing files of a template.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="hooks" class="content section">
+        <h3 class="title">Template Hooks</h3>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              With the <code>before</code> and <code>after</code> hook you can
+              handle work that template parsing alone would not get done.
+            </p>
+            <p>
+              These are functions that are stored in the same file as the
+              template-metas, a <code>.js</code> file that has the same name
+              as the parent folder. <code>node-module.js</code> in the example.
+            </p>
+
+            <h4 class="title is-4"><code>before</code></h4>
+            <p>
+              The <code>before</code> hook is called before any file is
+              generated, but after the template-files have been parsed for
+              variables and the user has been prompted for values.
+            </p>
+            <p>
+              Most of the time you want to extend Handlebars with custom
+              helpers (<code>utils.Handlebars.registerHelper</code>) that you
+              can use in your template-files. Another common task is to
+              manipulate the <code>variables</code> that are passed into the
+              template.
+            </p>
+            <p>
+              The hook function is called with the following parameters:
+            </p>
+            <p>
+              <code>srcPath</code> - The full path where the template-files are
+              located.
+            </p>
+            <p>
+              <code>distPath</code> - The full path where files will be
+              generated.
+            </p>
+            <p>
+              <code>variables</code> - An object with variable-names as keys,
+              and the user entered input as values. Modify a value in this
+              object, and it will be used in template-files.
+            </p>
+            <p>
+              <code>utils</code> - An object with instances of the following
+              tools:
+
+              <ul>
+                <li>
+                  <a href="http://handlebarsjs.com">utils.Handlebars</a> -
+                  A slightly modified Handlebars.js. This
+                  version is aware of custom delimiters. Most of the time you
+                  want to use <code>utils.Handlebars.registerHelper</code>
+                  to register custom helpers you can use in your template-files.
+                  It has a extra function
+                  <code>utils.Handlebars.transform(str, data)</code> to
+                  transform template strings with custom delimiters (see
+                  example).
+                </li>
+                <li>
+                  <a href="https://github.com/SBoudrias/Inquirer.js">
+                    utils.Inquirer
+                  </a> - With Inquirer.js you are able to prompt the user
+                  and execute different actions depending on the answers.
+                </li>
+                <li>
+                  <a href="https://github.com/shelljs/shelljs">utils.Shell</a> -
+                  With Shell.js you are able to execute system commands. Useful
+                  for all kinds of stuff: download files, install dependencies,
+                  etc.
+                </li>
+                <li>
+                  <a href="https://github.com/jprichardson/node-fs-extra">
+                    utils.Fs
+                  </a> - With fs-extra you can do any kind of action you can do
+                  with the normal Node.js' fs module, and a couple useful more.
+                </li>
+                <li>
+                  <a href="https://lodash.com/docs">utils._</a> - With Lodash
+                  you receive a rather big toolbelt for all sorts of things to
+                  work with Arrays, Objects, Functions and Strings.
+                </li>
+                <li>
+                  <a href="https://github.com/chalk/chalk">utils.Chalk</a> -
+                  With Chalk you can style terminal output. This is useful to
+                  show additional infos to the user nicely formatted.
+                </li>
+              </ul>
+            </p>
+            <p>
+              <code>cb</code> - The callback you need to call when everything is
+              ready to proceed generating the files. Call this function without
+              any parameter to continue. Call it with a error message, a String,
+              to abort the generation process and show the message.
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~/templates/node-module $</span> cat node-module.js
+module.exports = {
+  delimiters: '<% %>',
+
+  before: function (srcPath, distPath, variables, utils, cb) {
+    utils.Handlebars.registerHelper('loud', (val) => {
+      return utils._.toUpper(val) + '!'
+    })
+
+    utils.Inquirer.prompt([{
+      type: 'list',
+      name: 'abort',
+      message: 'Abort?',
+      choices: ['No', 'Yes']
+    }]).then((answers) => {
+      if (answers.abort === 'Yes') {
+        cb('Aborted by user')
+      } else {
+        cb()
+      }
+    })
+  },
+
+  after: function (srcPath, distPath, variables, utils) {
+    utils.Shell.cd(distPath + '/' + variables.moduleName)
+    utils.Shell.exec('npm init -y')
+    utils.Shell.exec('npm install lodash --save')
+
+    let str = utils.Handlebars.transform('<% loud "Lets rock" %>')
+    console.log(utils.Chalk.blue(str))
+  }
+}
+
+<span>~/templates/node-module $</span> cd &amp;&amp; rm -rf clay
+<span>~ $</span> lehm create node-module
+? Name of your Node Module: clay
+? Abort? No
+Wrote to ~/templates/clay/package.json:
+...
+clay@1.0.0 ~/templates/clay
+└── lodash@4.13.1
+...
+LETS ROCK!
+<span>~ $</span> ls clay
+node_modules package.json clay.js
+</pre>
+            <p></p>
+            <h4 class="title is-4"><code>after</code></h4>
+            <p>
+              The <code>after</code> hook is called after all the files have
+              been generated.
+            </p>
+            <p>
+              Here you can finish the generation process, like installing
+              dependencies or move files around or show any additional info
+              that is useful to the user.
+            </p>
+            <p>
+              It has has the same function parameters like the
+              <code>before</code> hook, except there is no <code>cb</code> to
+              indicate to continue. As far as Lehm is concerned, the process
+              is done when all files are generated.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div id="helpers" class="content section">
         <h3 class="title">Handlebar Helpers</h3>
+        <p>
+          Lehm extends Handlebars with these basic helpers, so you can use them
+          in your template-files without the need for a <code>before</code>
+          hook. But remember, you can add new helpers by using the
+          <code>utils.Handlebars.registerHelper</code> method in the
+          <code>before</code> hook.
+        </p>
+
+        <div class="columns">
+          <div class="column is-6">
+            <code>{{ lowerCase "LOWERCASE" }} = lowercase</code>
+          </div>
+          <div class="column is-6">
+            <code>{{ upperCase "uppercase" }} = UPPERCASE</code>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <code>{{ snakeCase "snake-case" }} = snake_case</code>
+          </div>
+          <div class="column is-6">
+            <code>{{ camelCase "camel_case" }} = camelCase</code>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <code>{{ kebabCase "kebabCase" }} = kebab-case</code>
+          </div>
+          <div class="column is-6">
+            <code>{{ capitalize "capitalize" }} = Capitalize</code>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <code>{{ pluralize "user" }} = users</code>
+          </div>
+          <div class="column is-6">
+            <code>{{ singularize "users" }} = user</code>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-12">
+            <code>{{ combine "singularize,capitalize" "users" }} = User</code>
+            <p>
+              With this helper you can combine multiple helpers that take a
+              single String as parameter. That means you can combine any helper
+              from above and any custom helper you may have written. The first
+              argument is a comma seperated String with all helpers that you
+              want to apply one after the other. The second argument is your
+              String you want to transform (ie a variable in your
+              template-files).
+            </p>
+            <p>
+              If you write custom helpers you need to make sure that the
+              variable is always the last parameter, just like in the combine
+              helper above.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div id="configuration" class="content section">
         <h3 class="title">Configuration</h3>
+
+        <div class="columns">
+          <div class="column is-6">
+            <p>
+              There are only two things you could configure with Lehm: the path
+              where the templates are found, and which delimiters to use.
+              Remember, you can overwrite the delimiters specifically for a template
+              with the <a href="#metas">Template Metas</a>.
+            </p>
+            <p>
+              Out of the box Lehm looks in the path <code>~/templates</code> for
+              templates, and <code>{{ }}</code> are used as default delimiters.
+            </p>
+            <p>
+              You can permanently overwrite these defaults by creating a
+              <code>.lehmrc</code> file in your users home folder. This is a JSON
+              formatted file with the following fields:
+            </p>
+            <p>
+              <code>templatesPath</code> - Full path where the global templates can
+              be found.
+            </p>
+            <p>
+              <code>handlebarsDelimiters</code> - A String to define the delimiters
+              used by Handlebars.js. The delimiters must have a space in between
+              them.
+            </p>
+            <p>
+              For convenience you can use the <code>lehm config</code> command
+              to set these values. It will save them to <code>~/.lehmrc</code>.
+              Easy-peasy.
+            </p>
+            <p>
+              If you use the <code>lehm</code> command, it will look for a
+              <code>.lehmrc</code> in the current working directory before
+              checking the home directory or using the defaults.
+            </p>
+            <p>
+              That way you can have a project-specific configuration for Lehm.
+              Use a relative path in <code>templatesPath</code> to store the
+              templates in the same directory as your project.
+            </p>
+            <p>
+              That's useful if you want to have global temlpates for scaffolding
+              whole projects, but want to have components templates for a
+              specific project stored in the same folder to keep it all
+              together, and for other people to use.
+            </p>
+          </div>
+          <div class="column is-6">
+            <pre><span>~ $</span> lehm list
+Templates Path: /Users/mustardamus/templates
+
+js-component
+js-component: component.js | style.css | template.html
+
+node-module
+node-module: <% moduleName %>/<% moduleName %>.js
+<span>~ $</span> mkdir -p templates-alt/test
+<span>~ $</span> echo "<% itWorks %>">templates-alt/test/test.txt
+<span>~ $</span> lehm config
+? Templates Path: ~/templates-alt
+? Handlebars Delimiters: <% %>
+Saved.
+<span>~ $</span> cat .lehmrc
+{
+  "templatesPath": "/Users/mustardamus/templates-alt",
+  "handlebarsDelimiters": "<% %>"
+}
+
+<span>~ $</span> lehm list
+Templates Path: /Users/mustardamus/templates-alt
+
+test
+test: test.txt
+<span>~ $</span> mkdir -p project/tpl/local/
+<span>~ $</span> cd project
+<span>~/project $</span> echo ":)">tpl/local/only.txt
+<span>~/project $</span> cat .lehmrc
+{
+  "templatesPath": "./tpl",
+  "handlebarsDelimiters": "<% %>"
+}
+
+<span>~/project $</span> lehm list
+Templates Path: ~/project/tpl
+
+local
+local: only.txt</pre>
+        </div>
       </div>
     </div>
+
+    <footer>
+      By <a href="https://twitter.com/mustardamus">@mustardamus</a> - 2016
+    </footer>
   </body>
 </html>
