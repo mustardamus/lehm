@@ -32,4 +32,9 @@ describe('Templates Class', () => {
     assert.equal(templates.findTemplateName('Template 2'), 'template-2')
     assert.equal(templates.findTemplateName('not-there'), null)
   })
+
+  it('should return null if templates path does not exist', () => {
+    templates.templatesPath = '/non/existent'
+    assert.equal(templates.getTemplates(), null)
+  })
 })
