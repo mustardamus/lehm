@@ -1,6 +1,6 @@
 {
   "name": "lehm",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A file-generator that gets out of your way",
   "author": "Sebastian Senf <contact@mustardamus.com>",
   "license": "MIT",
@@ -33,6 +33,7 @@
     "glob": "^7.0.5",
     "handlebars": "^4.0.5",
     "inquirer": "^1.1.2",
+    "isbinaryfile": "^3.0.0",
     "lodash": "^4.13.1",
     "pluralize": "^3.0.0",
     "rc": "^1.1.6"
