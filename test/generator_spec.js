@@ -32,13 +32,14 @@ describe('Generator Class', () => {
     assert.equal(generator.afterHook, 'function')
   })
 
-  it('should transform and generate the files', () => {
+  it('should transform and generate or copy the files', () => {
     let distFile1 = path.join(distPath, 'boolean.txt')
     let fixFile1 = path.join(__dirname, 'fixtures/generator/compare/boolean.txt')
     let distFile2 = path.join(distPath, 'number.txt')
     let fixFile2 = path.join(__dirname, 'fixtures/generator/compare/number.txt')
     let distFile3 = path.join(distPath, 'some-module-name/some-module-name.txt')
     let fixFile3 = path.join(__dirname, 'fixtures/generator/compare/some-module-name/some-module-name.txt')
+    let distFile4 = path.join(distPath, 'favicon.png')
 
     fs.removeSync(distPath)
     assert.equal(fs.existsSync(distPath), false)
@@ -52,6 +53,7 @@ describe('Generator Class', () => {
     assert.equal(fs.readFileSync(distFile1, 'utf8'), fs.readFileSync(fixFile1, 'utf8'))
     assert.equal(fs.readFileSync(distFile2, 'utf8'), fs.readFileSync(fixFile2, 'utf8'))
     assert.equal(fs.readFileSync(distFile3, 'utf8'), fs.readFileSync(fixFile3, 'utf8'))
+    assert.equal(fs.existsSync(distFile4), true)
   })
 
   it('should run the before hook', (done) => {

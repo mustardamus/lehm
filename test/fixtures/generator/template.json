@@ -3,7 +3,8 @@
   "files": [
     "{{ moduleName }}/{{ moduleName }}.txt",
     "boolean.txt",
-    "number.txt"
+    "number.txt",
+    "favicon.png"
   ],
   "before": "function",
   "after": "function"
