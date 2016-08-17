@@ -1,6 +1,6 @@
 {
   "name": "lehm",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A file-generator that gets out of your way",
   "author": "Sebastian Senf <contact@mustardamus.com>",
   "license": "MIT",
@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "gh-pages": "^0.11.0",
-    "mocha": "^2.5.3",
+    "mocha": "^3.0.2",
     "sinon": "^1.17.4",
     "standard": "^7.1.2"
   }
