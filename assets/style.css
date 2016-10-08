@@ -7,12 +7,12 @@ html, body {
   background: #4F4E57;
 }
 
-p a, p a:visited {
+p a, p a:visited, h3 a, .section li a {
   color: #66AEF3 !important;
   border-bottom: 3px solid #F4E9DF !important;
 }
 
-p a:hover {
+p a:hover, h3 a:hover, .section li a:hover {
   color: #333 !important;
   border-bottom: 3px solid #66AEF3 !important;
 }
