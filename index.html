@@ -402,6 +402,12 @@ js-component: component.js | style.css | template.html</pre>
               combination with <code>=</code> and/or <code>#</code> in any
               file's content of the template like you've seen before.
             </p>
+            <p>
+              Note that if you have to use quotes in filenames you have to use
+              single qoutes <code>'</code> instead of double quotes
+              <code>"</code>. For example:
+              <code>{{combine 'pluralize,upperCase' variableName}}.js</code>.  
+            </p>
           </div>
           <div class="column is-6">
             <pre><span>~/templates $</span> mkdir node-module &amp;&amp; cd node-module
