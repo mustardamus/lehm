@@ -18,10 +18,6 @@ installation and all.
 Documentation can be found under
 [https://mustardamus.github.io/lehm/](https://mustardamus.github.io/lehm/).
 
-## Quick Screencast
-
-![](http://g.recordit.co/jBApEMMAI3.gif)
-
 ## Development
 
     npm test
