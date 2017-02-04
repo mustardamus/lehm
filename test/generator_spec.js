@@ -62,6 +62,7 @@ describe('Generator Class', () => {
 
     let hook = function ({ srcPath, distPath, variables, utils }, cb) {
       utils.extendedBefore = true
+      variables.extendedBefore = true
 
       assert.deepEqual(this, templateObj)
       assert.equal(fs.existsSync(distPath), false)
@@ -86,6 +87,7 @@ describe('Generator Class', () => {
     assert.ok(obj.utils.Chalk)
     assert.ok(obj.utils.Handlebars)
     assert.ok(obj.utils.extendedBefore)
+    assert.ok(obj.variables.extendedBefore)
   })
 
   it('should run the after hook', (done) => {
