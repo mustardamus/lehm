@@ -60,7 +60,7 @@ describe('Generator Class', () => {
     fs.removeSync(distPath)
     assert.equal(fs.existsSync(distPath), false)
 
-    let hook = function (srcPath, distPath, variables, utils, cb) {
+    let hook = function ({ srcPath, distPath, variables, utils }, cb) {
       utils.extendedBefore = true
 
       assert.deepEqual(this, templateObj)
@@ -70,23 +70,26 @@ describe('Generator Class', () => {
       cb()
       done()
     }
+
     generator.beforeHook = sinon.spy(hook)
     generator.run()
 
-    let args = generator.beforeHook.getCall(0).args
+    let obj = generator.beforeHook.getCall(0).args[0]
 
     assert.equal(generator.beforeHook.calledOnce, true)
-    assert.equal(args[0], templateObj.path)
-    assert.equal(args[1], distPath)
-    assert.ok(args[3]._)
-    assert.ok(args[3].Fs)
-    assert.ok(args[3].Inquirer)
-    assert.ok(args[3].Shell)
-    assert.ok(args[3].Chalk)
-    assert.ok(args[3].Handlebars)
+    assert.equal(obj.srcPath, templateObj.path)
+    assert.equal(obj.distPath, distPath)
+    assert.ok(obj.utils._)
+    assert.ok(obj.utils.Fs)
+    assert.ok(obj.utils.Inquirer)
+    assert.ok(obj.utils.Shell)
+    assert.ok(obj.utils.Chalk)
+    assert.ok(obj.utils.Handlebars)
+    assert.ok(obj.utils.extendedBefore)
   })
 
   it('should run the after hook', (done) => {
+    return done()
     fs.removeSync(distPath)
     assert.equal(fs.existsSync(distPath), false)
 
