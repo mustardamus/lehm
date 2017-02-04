@@ -406,7 +406,7 @@ js-component: component.js | style.css | template.html</pre>
               Note that if you have to use quotes in filenames you have to use
               single qoutes <code>'</code> instead of double quotes
               <code>"</code>. For example:
-              <code>{{combine 'pluralize,upperCase' variableName}}.js</code>.  
+              <code>{{combine 'pluralize,upperCase' variableName}}.js</code>.
             </p>
           </div>
           <div class="column is-6">
@@ -559,7 +559,10 @@ node-module: {{ moduleName }}/{{ moduleName }}.js</pre>
               template.
             </p>
             <p>
-              The hook function is called with the following parameters:
+              The hook function is called with an <code>Object</code> which has
+              the following fields (note that in the example to the right we are
+              using <a href="https://babeljs.io/learn-es2015/#ecmascript-2015-features-destructuring">ES2015 destructuring</a>
+              for better reading and less code):
             </p>
             <p>
               <code>srcPath</code> - The full path where the template-files are
@@ -620,8 +623,11 @@ node-module: {{ moduleName }}/{{ moduleName }}.js</pre>
                 </li>
               </ul>
             </p>
+
+            <h4 class="title is-5"><code>before done callback</code></h4>
             <p>
-              <code>cb</code> - The callback you need to call when everything is
+              The second parameter for the <code>before</code> hook is a
+              callback you need to call when everything is
               ready to proceed generating the files. Call this function without
               any parameter to continue. Call it with a error message, a String,
               to abort the generation process and show the message.
@@ -632,7 +638,7 @@ node-module: {{ moduleName }}/{{ moduleName }}.js</pre>
 module.exports = {
   delimiters: '<% %>',
 
-  before: function (srcPath, distPath, variables, utils, cb) {
+  before ({ srcPath, distPath, variables, utils }, cb) {
     utils.Handlebars.registerHelper('loud', (val) => {
       return utils._.toUpper(val) + '!'
     })
@@ -651,7 +657,7 @@ module.exports = {
     })
   },
 
-  after: function (srcPath, distPath, variables, utils) {
+  after ({ srcPath, distPath, variables, utils }) {
     utils.Shell.cd(distPath + '/' + variables.moduleName)
     utils.Shell.exec('npm init -y')
     utils.Shell.exec('npm install lodash --save')
@@ -683,13 +689,15 @@ node_modules package.json clay.js
             <p>
               Here you can finish the generation process, like installing
               dependencies or move files around or show any additional info
-              that is useful to the user.
+              that is useful to the user. Most of the time you want to use the
+              <code>utils</code> from the <code>Object</code> that is passed in
+              as the first and only parameter.
             </p>
             <p>
-              It has has the same function parameters like the
-              <code>before</code> hook, except there is no <code>cb</code> to
-              indicate to continue. As far as Lehm is concerned, the process
-              is done when all files are generated.
+              It is called with the same <code>Object</code> as the the
+              <code>before</code> hook. However, there is no
+              <code>done callback</code> to continue. As far as Lehm is
+              concerned, the process is done when all files are generated.
             </p>
           </div>
         </div>
@@ -893,7 +901,7 @@ local: only.txt</pre>
 
         <div class="column is-6">
           <h3>Bulvue Front-end Extensions</h3>
-          
+
           <ul>
             <li>
               <a href="https://github.com/mustardamus/lehm-bulvue-extend-fontawesome">
@@ -938,11 +946,11 @@ local: only.txt</pre>
             Coming soon...
           </p>
         </div>
-      </div>      
+      </div>
     </div>
 
     <footer>
-      By <a href="https://twitter.com/mustardamus">@mustardamus</a> - 2016
+      By <a href="https://twitter.com/mustardamus">@mustardamus</a> - 2016-2017
     </footer>
   </body>
 </html>
